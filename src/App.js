@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import logo from "./logo.svg";
 import "./App.css";
+import Options from "./components/Options";
+import Selected from "./components/Options";
 
 class App extends Component {
   constructor() {
@@ -54,16 +55,28 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  toggleSelect = () => {
+    console.log("change select state");
+  };
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Make Up A Gift</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <section className="select">
+          <div className="wrap">
+            <Options
+              toggleSelect={this.toggleSelect()}
+              selectedType={this.state.selectedType}
+            />
+            <Selected
+              toggleSelect={this.toggleSelect()}
+              selectedType={this.state.selectedType}
+            />
+          </div>
+        </section>
       </div>
     );
   }
