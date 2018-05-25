@@ -4,6 +4,7 @@ const Slider = (props) => {
 
     return (
         <div>
+            <p>Value: {} </p>
             <input 
                 type="range" 
                 min={props.budget.min} 
