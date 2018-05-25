@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 
-const Slider = (props) => {
+const Slider = props => {
+  //   console.log(props);
+  return (
+    <div>
+      <p>Value: {props.budget.range} </p>
+      <input
+        type="range"
+        min={props.budget.min}
+        max={props.budget.max}
+        onChange={e => {
+          props.setBudget(e.target.value);
+        }}
+      />
+    </div>
+  );
+};
 
-    return (
-        <div>
-            <p>Value: {} </p>
-            <input 
-                type="range" 
-                min={props.budget.min} 
-                max={props.budget.max} 
-                onChange={(e)=> {props.setBudget(e.target.value)}}/>
-        </div>
-        )
-    }
-
-export default Slider
+export default Slider;
