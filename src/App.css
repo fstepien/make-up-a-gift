@@ -45,3 +45,12 @@
   margin: 3px auto;
   padding: 0.3rem 1rem;
 }
+
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+h1 {
+  font-family: 'Parisienne', cursive;
+}
