@@ -1,16 +1,37 @@
 import React from "react";
+import Overdrive from "react-overdrive";
 
 class Options extends React.Component {
+  checkToggleLimit = key => {
+    // for (let value in selectedType) {
+    //   console.log(value);
+    // }
+
+    Object.values(this.props.selectedType).reduce(
+      (accumulator, currentValue, currentIndex, array) =>
+        accumulator + currentValue
+    ) < 3 && this.props.toggleSelect(key);
+  };
+
   render() {
     const { selectedType, toggleSelect } = this.props;
     return (
       <div className="type-list">
+        <h2>Pick 3 (or whatever)</h2>
+
         {Object.keys(selectedType)
           .filter(key => !selectedType[key])
           .map((key, i) => (
-            <div key={i} name={key} onClick={() => toggleSelect(key)}>
-              {key.replace(/_/g, " ").toUpperCase()}
-            </div>
+            <Overdrive id={key}>
+              <div
+                className="type-list-item"
+                key={i}
+                name={key}
+                onClick={() => this.checkToggleLimit(key)}
+              >
+                {key.replace(/_/g, " ").toUpperCase()}
+              </div>
+            </Overdrive>
           ))}
       </div>
     );
