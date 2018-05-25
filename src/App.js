@@ -31,7 +31,19 @@ class App extends Component {
       mascara: [],
       nail_polish: []
     },
-    budget: { min: 1, max: 1000 }
+    minmax: {
+      blush: { min: 0, max: 0, avg: 0 },
+      bronzer: { min: 0, max: 0, avg: 0 },
+      eyebrow: { min: 0, max: 0, avg: 0 },
+      eyeliner: { min: 0, max: 0, avg: 0 },
+      eyeshadow: { min: 0, max: 0, avg: 0 },
+      foundation: { min: 0, max: 0, avg: 0 },
+      lip_liner: { min: 0, max: 0, avg: 0 },
+      lipstick: { min: 0, max: 0, avg: 0 },
+      mascara: { min: 0, max: 0, avg: 0 },
+      nail_polish: { min: 0, max: 0, avg: 0 }
+    },
+    budget: { min: 1, max: 1000, range: 500 }
   };
 
   componentDidMount() {
@@ -48,6 +60,17 @@ class App extends Component {
     })
       .then(res => {
         const products = { ...this.state.products };
+        const minmax = { ...this.state.minmax };
+
+        console.log(res.data);
+        
+    const testPrice = Math.min(res.data.map(item =>  item.price));
+    console.log(parseInt(testPrice));
+    
+        
+        // console.log(Object.values(res.data.price);
+        // console.log(products);
+        
         products[product] = res.data;
         this.setState({ products });
       })
@@ -61,7 +84,9 @@ class App extends Component {
   };
 
   setBudget = value => {
-    console.log(value);
+    const budget = { ...this.state.budget };
+    budget.range = value;
+    this.setState({ budget });
   };
 
   render() {

@@ -14,18 +14,17 @@ class Options extends React.Component {
   };
 
   render() {
-    const { selectedType, toggleSelect } = this.props;
+    const { selectedType } = this.props;
     return (
       <div className="type-list">
         <h2>Pick 3 (or whatever)</h2>
 
         {Object.keys(selectedType)
           .filter(key => !selectedType[key])
-          .map((key, i) => (
-            <Overdrive id={key}>
+          .map(key => (
+            <Overdrive id={key} key={key}>
               <div
                 className="type-list-item"
-                key={i}
                 name={key}
                 onClick={() => this.checkToggleLimit(key)}
               >
