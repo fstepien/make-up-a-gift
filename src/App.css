@@ -8,8 +8,9 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background: url("/assets/trianglify.svg");
+  background-size: cover;
+  height: 300px;
   padding: 20px;
   color: white;
 }
@@ -22,14 +23,6 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .wrap {
   width: 80%;
   max-width: 900px;
@@ -44,7 +37,7 @@
   width: 50%;
   border: 1px solid black;
   text-align: center;
-  height: 400px;
+  min-height: 450px;
 }
 .type-list-item {
   width: 50%;
