@@ -20,3 +20,5 @@ An app that uses a makeup API to assemble a gift set that follows a certain budg
 #### Data Flow Diagram
 
 ![](https://meta.filipstepien.com/makeup.dataflow.png)
+
+#### App Structure / Team Programming
