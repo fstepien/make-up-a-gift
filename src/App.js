@@ -3,37 +3,36 @@ import axios from "axios";
 import "./App.css";
 import Options from "./components/Options";
 import Selected from "./components/Selected";
+import Slider from "./components/Slider";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedType: {
-        blush: false,
-        bronzer: false,
-        eyebrow: false,
-        eyeliner: false,
-        eyeshadow: false,
-        foundation: false,
-        lip_liner: false,
-        lipstick: false,
-        mascara: false,
-        nail_polish: false
-      },
-      products: {
-        blush: [],
-        bronzer: [],
-        eyebrow: [],
-        eyeliner: [],
-        eyeshadow: [],
-        foundation: [],
-        lip_liner: [],
-        lipstick: [],
-        mascara: [],
-        nail_polish: []
-      }
-    };
-  }
+  state = {
+    selectedType: {
+      blush: false,
+      bronzer: false,
+      eyebrow: false,
+      eyeliner: false,
+      eyeshadow: false,
+      foundation: false,
+      lip_liner: false,
+      lipstick: false,
+      mascara: false,
+      nail_polish: false
+    },
+    products: {
+      blush: [],
+      bronzer: [],
+      eyebrow: [],
+      eyeliner: [],
+      eyeshadow: [],
+      foundation: [],
+      lip_liner: [],
+      lipstick: [],
+      mascara: [],
+      nail_polish: []
+    },
+    budget: { min: 1, max: 1000 }
+  };
 
   componentDidMount() {
     for (let product in this.state.products) {
@@ -57,9 +56,12 @@ class App extends Component {
 
   toggleSelect = key => {
     const selectedType = { ...this.state.selectedType };
-    console.log(key);
     selectedType[key] = !selectedType[key];
     this.setState({ selectedType });
+  };
+
+  setBudget = value => {
+    console.log(value);
   };
 
   render() {
@@ -69,7 +71,7 @@ class App extends Component {
           <h1 className="App-title">Make Up A Gift</h1>
         </header>
         <section className="select">
-          <div className="wrap">
+          <div className="wrap type">
             <Options
               toggleSelect={this.toggleSelect}
               selectedType={this.state.selectedType}
@@ -78,6 +80,9 @@ class App extends Component {
               toggleSelect={this.toggleSelect}
               selectedType={this.state.selectedType}
             />
+          </div>
+          <div className="slider wrap">
+            <Slider budget={this.state.budget} setBudget={this.setBudget} />
           </div>
         </section>
       </div>
