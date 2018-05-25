@@ -30,7 +30,25 @@
     transform: rotate(360deg);
   }
 }
-
+.wrap {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.type {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: row wrap;
+}
 .type-list {
-  border: 1px solid red;
+  width: 50%;
+  border: 1px solid black;
+  text-align: center;
+  height: 400px;
+}
+.type-list-item {
+  width: 50%;
+  border: 1px solid black;
+  margin: 3px auto;
+  padding: 0.3rem 1rem;
 }
