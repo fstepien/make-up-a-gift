@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 import Options from "./components/Options";
-import Selected from "./components/Options";
+import Selected from "./components/Selected";
 
 class App extends Component {
   constructor() {
@@ -55,8 +55,11 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  toggleSelect = () => {
-    console.log("change select state");
+  toggleSelect = key => {
+    const selectedType = { ...this.state.selectedType };
+    console.log(key);
+    selectedType[key] = !selectedType[key];
+    this.setState({ selectedType });
   };
 
   render() {
@@ -68,11 +71,11 @@ class App extends Component {
         <section className="select">
           <div className="wrap">
             <Options
-              toggleSelect={this.toggleSelect()}
+              toggleSelect={this.toggleSelect}
               selectedType={this.state.selectedType}
             />
             <Selected
-              toggleSelect={this.toggleSelect()}
+              toggleSelect={this.toggleSelect}
               selectedType={this.state.selectedType}
             />
           </div>
