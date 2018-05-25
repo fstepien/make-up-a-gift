@@ -61,16 +61,15 @@ class App extends Component {
       .then(res => {
         const products = { ...this.state.products };
         const minmax = { ...this.state.minmax };
+       
+        const newTest = res.data.filter((item)=> {
+          if (item.price !== null && item.price !== ''){ 
+            return parseInt(item.price) 
+          }
+        });
+        console.log(newTest);
+        
 
-        console.log(res.data);
-        
-    const testPrice = Math.min(res.data.map(item =>  item.price));
-    console.log(parseInt(testPrice));
-    
-        
-        // console.log(Object.values(res.data.price);
-        // console.log(products);
-        
         products[product] = res.data;
         this.setState({ products });
       })
