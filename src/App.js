@@ -3,7 +3,6 @@ import axios from "axios";
 import "./App.css";
 import Options from "./components/Options";
 import Selected from "./components/Selected";
-import Slider from "./components/Slider"
 
 class App extends Component {
   constructor() {
@@ -79,7 +78,6 @@ class App extends Component {
               toggleSelect={this.toggleSelect}
               selectedType={this.state.selectedType}
             />
-            <Slider/>
           </div>
         </section>
       </div>
