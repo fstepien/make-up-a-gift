@@ -43,38 +43,68 @@ class App extends Component {
       mascara: { min: 0, max: 0, avg: 0 },
       nail_polish: { min: 0, max: 0, avg: 0 }
     },
+    rates: { CAD: 1, GBP: 1, USD: 1 },
     budget: { min: 1, max: 1000, range: 500 }
   };
 
   componentDidMount() {
-    for (let product in this.state.products) {
-      this.getProductData(product);
-    }
+    axios({
+      method: "GET",
+      url:
+        "http://data.fixer.io/api/latest?access_key=828f6dfc4a7815f24e3c45fbf819b227",
+      responseType: "json"
+    })
+      .then(res => {
+        const rates = { ...this.state.rates };
+        // rates compared to EUR - fetching rates first to work with CAD
+        rates.GBP = res.data.rates.CAD / res.data.rates.GBP;
+        rates.USD = res.data.rates.CAD / res.data.rates.USD;
+        this.setState({ rates });
+      })
+      .then(() => {
+        for (let product in this.state.products) {
+          this.getProductData(product);
+        }
+      });
   }
 
-  getProductData(product) {
+  getProductData = product => {
     axios({
-      method: "get",
+      method: "GET",
       url: `https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${product}`,
       responseType: "json"
     })
       .then(res => {
+        // this section fetches product data and uses the rates info to convert to CAD in cents
         const products = { ...this.state.products };
-        const minmax = { ...this.state.minmax };
-       
-        const newTest = res.data.filter((item)=> {
-          if (item.price !== null && item.price !== ''){ 
-            return parseInt(item.price) 
-          }
-        });
-        console.log(newTest);
-        
-
-        products[product] = res.data;
+        products[product] = res.data
+          //make sure price is not 0
+          .filter(product => parseInt(product.price) > 0)
+          .map(product => {
+            product.currency === null && (product.currency = "CAD");
+            product.price = parseInt(
+              Number(product.price) * this.state.rates[product.currency] * 100
+            );
+            return product;
+          });
         this.setState({ products });
       })
+      .then(() => {
+        // finding min, max, and average for each category
+        const minmax = { ...this.state.minmax };
+        const productPriceArr = this.state.products[product].map(product =>
+          Number(product.price)
+        );
+        minmax[product].min = Math.min(...productPriceArr);
+        minmax[product].max = Math.max(...productPriceArr);
+        minmax[product].avg = parseInt(
+          productPriceArr.reduce((a, b) => a + b, 0) / productPriceArr.length
+        );
+        // add min and max to budget if they are lower or higher respectively then current price
+        // need to change placeholders or it will not work currently min: 1, max 1000
+      })
       .catch(err => console.log(err));
-  }
+  };
 
   toggleSelect = key => {
     const selectedType = { ...this.state.selectedType };
@@ -88,6 +118,16 @@ class App extends Component {
     this.setState({ budget });
   };
 
+  // this function will be run on change of this.state.selectedType
+  //if .some are true use those numbers to calc min,max, if some true is false use all to calc min, max
+
+  // adjustBudget = () => {
+  //   budget = this.state.budget
+  //   console.log(minmax);
+  //   budget.min = Math.min([...minmax.map(product => product.min)]);
+  //   this.setState({ budget });
+  // }
+
   render() {
     return (
       <div className="App">
@@ -95,7 +135,7 @@ class App extends Component {
           <h1 className="App-title">Make Up A Gift</h1>
         </header>
         <section className="select">
-          <div className="wrap type">
+          <div className="wrap type clearfix">
             <Options
               toggleSelect={this.toggleSelect}
               selectedType={this.state.selectedType}
