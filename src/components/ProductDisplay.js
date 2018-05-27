@@ -5,6 +5,11 @@ class ProductDisplay extends React.Component {
         super(props);
         this.state = {
             dataLoaded: false,
+            locked: {
+                p1: false,
+                p2:false,
+                p3:false
+            }
         }
     }
 
@@ -12,10 +17,6 @@ class ProductDisplay extends React.Component {
         if(nextProps.product3 !== this.props.product3){
             this.setState({dataLoaded: true});
         }
-    }
-
-    generate() {
-
     }
 
     render() {
