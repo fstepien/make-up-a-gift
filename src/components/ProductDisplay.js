@@ -1,4 +1,5 @@
 import React from "react";
+import ProductItem from "./ProductItem"
 
 class ProductDisplay extends React.Component {
     constructor(props){
@@ -27,21 +28,22 @@ class ProductDisplay extends React.Component {
 
     render() {
        const {product1, product2, product3} = this.props;
-        return <div className="wrap type clearfix displayBox">
-            <div className="product product1">
-              <input type="button" value="lock" onClick={() => this.toggleLock("p1")} />
-              <img src={this.state.dataLoaded ? product1.image_link : null} className="displayImg" />
-            </div>
-            <div className="product product2">
-              <input type="button" value="lock" onClick={() => this.toggleLock("p2")} />
-              <img src={this.state.dataLoaded ? product2.image_link : null} className="displayImg" />
-            </div>
-            <div className="product product3">
-              <input type="button" value="lock" onClick={() => this.toggleLock("p3")} />
-              <img src={this.state.dataLoaded ? product3.image_link : null} className="displayImg" />
-            </div>
+       const {dataLoaded} = this.state;
+       
+       return( 
+        <div className="wrap type clearfix displayBox">
+           <ProductItem product={product1}
+                        loaded={dataLoaded} 
+                        toggleLock={this.toggleLock}/>
+           <ProductItem product={product2}
+                        loaded={dataLoaded} 
+                        toggleLock={this.toggleLock}/>
+           <ProductItem product={product3}
+                        loaded={dataLoaded} 
+                        toggleLock={this.toggleLock}/>
             <input type="button" value="generate" onClick={() => this.props.generate(this.state.locked)} />
-          </div>;
+        </div>
+       )
 
     }
 
