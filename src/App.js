@@ -131,7 +131,7 @@ class App extends Component {
   //   budget.min = Math.min([...minmax.map(product => product.min)]);
   //   this.setState({ budget });
   // }
-  
+
   generateDisplay = locked => {
     // Triggered when generate button is clicked in ProductDisplay
     // Locked product state passed from ProductDisplay 
