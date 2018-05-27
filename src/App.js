@@ -4,7 +4,10 @@ import "./App.css";
 import Options from "./components/Options";
 import Selected from "./components/Selected";
 import Slider from "./components/Slider";
-import ProductDisplay from "./components/ProductDisplay"
+import ProductDisplay from "./components/ProductDisplay";
+
+//REMOVE SEND EMAIL AND THIS IMPORT AFTER IT IS PLACED IN MODAL
+import SendEmail from "./components/SendEmail";
 
 class App extends Component {
   state = {
@@ -130,11 +133,16 @@ class App extends Component {
   // }
 
   render() {
-    
-    const product1 = this.state.products.blush[Math.floor(Math.random() * this.state.products.blush.length)];
-    const product2 = this.state.products.eyebrow[Math.floor(Math.random() * this.state.products.eyebrow.length)];
-    const product3 = this.state.products.mascara[Math.floor(Math.random() * this.state.products.mascara.length)];
-    
+    const product1 = this.state.products.blush[
+      Math.floor(Math.random() * this.state.products.blush.length)
+    ];
+    const product2 = this.state.products.eyebrow[
+      Math.floor(Math.random() * this.state.products.eyebrow.length)
+    ];
+    const product3 = this.state.products.mascara[
+      Math.floor(Math.random() * this.state.products.mascara.length)
+    ];
+
     return (
       <div className="App">
         <header className="App-header">
@@ -156,12 +164,12 @@ class App extends Component {
           </div>
         </section>
         <section className="display">
-          <div>
-            <ProductDisplay
-              product1={product1}
-              product2={product2}
-              product3={product3}/>
-          </div>
+          <ProductDisplay
+            product1={product1}
+            product2={product2}
+            product3={product3}
+          />
+          <SendEmail />
         </section>
       </div>
     );
