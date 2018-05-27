@@ -149,35 +149,36 @@ class App extends Component {
     ];
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Make Up A Gift</h1>
-        </header>
-        <section className="select">
-          <div className="wrap type clearfix">
-            <Options
-              toggleSelect={this.toggleSelect}
-              selectedType={this.state.selectedType}
+
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Make Up A Gift</h1>
+          </header>
+          <section className="select">
+            <div className="wrap type clearfix">
+              <Options
+                toggleSelect={this.toggleSelect}
+                selectedType={this.state.selectedType}
+              />
+              <Selected
+                toggleSelect={this.toggleSelect}
+                selectedType={this.state.selectedType}
+              />
+            </div>
+            <div className="slider wrap">
+              <Slider budget={this.state.budget} setBudget={this.setBudget} />
+            </div>
+          </section>
+          <section className="display">
+            <ProductDisplay
+              product1={product1}
+              product2={product2}
+              product3={product3}
+              generate={this.generateDisplay}
             />
-            <Selected
-              toggleSelect={this.toggleSelect}
-              selectedType={this.state.selectedType}
-            />
-          </div>
-          <div className="slider wrap">
-            <Slider budget={this.state.budget} setBudget={this.setBudget} />
-          </div>
-        </section>
-        <section className="display">
-          <ProductDisplay
-            product1={product1}
-            product2={product2}
-            product3={product3}
-            generate={this.generateDisplay}
-          />
-          <SendEmail />
-        </section>
-      </div>
+            <SendEmail />
+          </section>
+        </div>
     );
   }
 }
