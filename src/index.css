@@ -147,6 +147,36 @@ input::-moz-focus-inner {
   padding: 0;
 }
 
+/* ProductDisplay styling */
+.product {
+  width: 33.33%;
+  height: 250px;
+  margin: 0 auto 20px auto;
+  float: left;
+  border: 1px solid black;
+  position: relative;
+}
+
+.product input[type="button"] {
+  width: 33%;
+  transform: translate(-50%, -100%);
+  position: absolute;
+  left: 50%;
+  top: -20px;
+}
+
+.displayImg {
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+.displayBox > input[type="button"] {
+  margin: 0 auto;
+  display: block;
+  width: 33.33%;
+}
+
 .clearfix:after {
   visibility: hidden;
   display: block;
