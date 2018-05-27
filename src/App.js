@@ -153,7 +153,11 @@ class App extends Component {
           </div>
           <div className="slider wrap">
             <Slider budget={this.state.budget} setBudget={this.setBudget} />
-            <ProductDisplay 
+          </div>
+        </section>
+        <section className="display">
+          <div>
+            <ProductDisplay
               product1={product1}
               product2={product2}
               product3={product3}/>
