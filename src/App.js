@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import "./App.css";
 import Options from "./components/Options";
 import Selected from "./components/Selected";
 import Slider from "./components/Slider";
 import ProductDisplay from "./components/ProductDisplay";
+import { Toggle, Portal, Modal } from "./utilities";
 
 //REMOVE SEND EMAIL AND THIS IMPORT AFTER IT IS PLACED IN MODAL
 import SendEmail from "./components/SendEmail";
@@ -134,9 +135,9 @@ class App extends Component {
 
   generateDisplay = locked => {
     // Triggered when generate button is clicked in ProductDisplay
-    // Locked product state passed from ProductDisplay 
-  }
- 
+    // Locked product state passed from ProductDisplay
+  };
+
   render() {
     const product1 = this.state.products.blush[
       Math.floor(Math.random() * this.state.products.blush.length)
@@ -149,36 +150,45 @@ class App extends Component {
     ];
 
     return (
-
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Make Up A Gift</h1>
-          </header>
-          <section className="select">
-            <div className="wrap type clearfix">
-              <Options
-                toggleSelect={this.toggleSelect}
-                selectedType={this.state.selectedType}
-              />
-              <Selected
-                toggleSelect={this.toggleSelect}
-                selectedType={this.state.selectedType}
-              />
-            </div>
-            <div className="slider wrap">
-              <Slider budget={this.state.budget} setBudget={this.setBudget} />
-            </div>
-          </section>
-          <section className="display">
-            <ProductDisplay
-              product1={product1}
-              product2={product2}
-              product3={product3}
-              generate={this.generateDisplay}
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Make Up A Gift</h1>
+        </header>
+        <section className="select">
+          <div className="wrap type clearfix">
+            <Options
+              toggleSelect={this.toggleSelect}
+              selectedType={this.state.selectedType}
             />
-            <SendEmail />
-          </section>
-        </div>
+            <Selected
+              toggleSelect={this.toggleSelect}
+              selectedType={this.state.selectedType}
+            />
+          </div>
+          <div className="slider wrap">
+            <Slider budget={this.state.budget} setBudget={this.setBudget} />
+          </div>
+        </section>
+        <section className="display wrap">
+          <ProductDisplay
+            product1={product1}
+            product2={product2}
+            product3={product3}
+            generate={this.generateDisplay}
+          />
+
+          <Toggle>
+            {({ on, toggle }) => (
+              <Fragment>
+                <button onClick={toggle}>Email My Results</button>
+                <Modal on={on} toggle={toggle}>
+                  <SendEmail />
+                </Modal>
+              </Fragment>
+            )}
+          </Toggle>
+        </section>
+      </div>
     );
   }
 }

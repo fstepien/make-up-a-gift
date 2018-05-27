@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sendgrid/mail": "^6.2.1",
     "axios": "^0.18.0",
+    "cors": "^2.8.4",
+    "firebase-admin": "^5.12.1",
+    "firebase-functions": "^1.0.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-overdrive": "0.0.10",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "styled-components": "^3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
