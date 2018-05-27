@@ -1,8 +1,44 @@
 import React from "react";
 
-const ProductDisplay = (props) => {
-    return (
-        <div></div>
-    )
+class ProductDisplay extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            dataLoaded: false,
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.product3 !== this.props.product3){
+            this.setState({dataLoaded: true});
+        }
+    }
+
+    generate() {
+
+    }
+
+    render() {
+       
+        return(
+            <div>
+              <div className="product1">
+                {/* <img src={} alt="" /> */}
+              </div>
+              <div className="product2">
+                {/* <img src={} alt="" /> */}
+              </div>
+              <div className="product3">
+                {/* <img src={} alt="" /> */}
+              </div>
+              <button onClick={this.generate}>generate</button>
+            </div>
+        )
+
+    }
+
 }
+
+
+
 export default ProductDisplay
