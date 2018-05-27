@@ -131,7 +131,12 @@ class App extends Component {
   //   budget.min = Math.min([...minmax.map(product => product.min)]);
   //   this.setState({ budget });
   // }
-
+  
+  generateDisplay = locked => {
+    // Triggered when generate button is clicked in ProductDisplay
+    // Locked product state passed from ProductDisplay 
+  }
+ 
   render() {
     const product1 = this.state.products.blush[
       Math.floor(Math.random() * this.state.products.blush.length)
@@ -168,6 +173,7 @@ class App extends Component {
             product1={product1}
             product2={product2}
             product3={product3}
+            generate={this.generateDisplay}
           />
           <SendEmail />
         </section>
