@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class SendEmail extends Component {
   state = {
@@ -19,7 +20,18 @@ class SendEmail extends Component {
     const name = this.nameRef.current.value;
     const email = this.emailRef.current.value;
     const notes = this.notesRef.current.value;
+    const url = "https://filipstepien.com";
     console.log(name, email, notes);
+    axios
+      .post(`https://us-central1-make-up-a-gift.cloudfunctions.net/httpEmail`, {
+        toName: name,
+        toEmail: email,
+        url: url
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   };
 
   render() {

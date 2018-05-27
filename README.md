@@ -19,6 +19,11 @@ An app that uses a makeup API to assemble a gift set that follows a certain budg
 
 #### Data Flow Diagram
 
-![](https://meta.filipstepien.com/makeup.dataflow.png)
+![](https://meta.filipstepien.com/makeup.dataflow.email.png)
+
+#### Sending Email from a Front End App
+
+![](https://meta.filipstepien.com/makeup.email.png)
+![](https://meta.filipstepien.com/makeup.email.display.png)
 
 #### App Structure / Team Programming
