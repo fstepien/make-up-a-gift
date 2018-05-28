@@ -229,12 +229,12 @@ class App extends Component {
           </div>
         </section>
         <section className="display wrap">
-          {/* <ProductDisplay
+          <ProductDisplay
             product1={product1}
             product2={product2}
             product3={product3}
             generate={this.generateDisplay}
-          /> */}
+          />
 
           <Toggle>
             {({ on, toggle }) => (
