@@ -6,6 +6,11 @@ class ProductDisplay extends React.Component {
         super(props);
         this.state = {
             dataLoaded: false,
+            products: {
+                1: {},
+                2: {},
+                3: {}
+            },
             locked: {
                 p1: false,
                 p2:false,
@@ -14,13 +19,20 @@ class ProductDisplay extends React.Component {
         }
     }
 
+    // STOPPED WORKING HERE
+    // Trying to get around the undefined problem by using componentWillReceiveProps()
     componentWillReceiveProps(nextProps) {
         if(nextProps.product3 !== this.props.product3){
-            this.setState({dataLoaded: true});
+            const {products} = this.state;
+            for(let item in products){console.log(item)};
+            products.product1 = this.props.product1;
+            products.product
+            this.setState({dataLoaded: true,  });
         }
     }
 
     toggleLock = product => {
+        console.log(product)
         const locked  = {...this.state.locked}
         locked[product] = !locked[product];
         this.setState({ locked });
@@ -32,15 +44,18 @@ class ProductDisplay extends React.Component {
        
        return( 
         <div className="wrap type clearfix displayBox">
-           <ProductItem product={product1}
-                        loaded={dataLoaded} 
-                        toggleLock={this.toggleLock}/>
-           <ProductItem product={product2}
-                        loaded={dataLoaded} 
-                        toggleLock={this.toggleLock}/>
-           <ProductItem product={product3}
-                        loaded={dataLoaded} 
-                        toggleLock={this.toggleLock}/>
+           <ProductItem product={product1} 
+                        toggleLock={this.toggleLock}
+                        productNum={"p1"}
+                        />
+           <ProductItem product={product2} 
+                        toggleLock={this.toggleLock}
+                        productNum={"p2"}
+                        />
+           <ProductItem product={product3} 
+                        toggleLock={this.toggleLock}
+                        productNum={"p3"}
+                        />
             <input type="button" value="generate" onClick={() => this.props.generate(this.state.locked)} />
         </div>
        )
