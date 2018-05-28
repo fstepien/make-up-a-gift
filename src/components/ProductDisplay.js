@@ -55,18 +55,18 @@ class ProductDisplay extends React.Component {
        
        return( 
         <div className="wrap type clearfix displayBox">
-            <div className="product product1">
+            <div className="product">
                 {dataLoaded ? <ProductItem 
                                 product={product1} 
                                 toggleLock={this.toggleLock}
                                 /> : null}
             </div>
-            <div className="product product1">
+            <div className="product">
                 {dataLoaded ? <ProductItem product={product2} 
                                 toggleLock={this.toggleLock}
                                 /> : null}
             </div>
-            <div className="product product1">
+            <div className="product">
                 {dataLoaded ? <ProductItem product={product3} 
                                 toggleLock={this.toggleLock}
                                 /> : null}
@@ -74,11 +74,7 @@ class ProductDisplay extends React.Component {
             <input type="button" value="generate" onClick={() => this.props.generate(this.state.products)} />
         </div>
        )
-
     }
-
 }
-
-
 
 export default ProductDisplay
