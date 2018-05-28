@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 class SendEmail extends Component {
   state = {
@@ -13,15 +14,13 @@ class SendEmail extends Component {
 
   nameRef = React.createRef();
   emailRef = React.createRef();
-  notesRef = React.createRef();
 
   sendEmail = e => {
     e.preventDefault();
     const name = this.nameRef.current.value;
     const email = this.emailRef.current.value;
-    const notes = this.notesRef.current.value;
     const url = "https://filipstepien.com";
-    console.log(name, email, notes);
+    console.log(name, email);
     axios
       .post(`https://us-central1-make-up-a-gift.cloudfunctions.net/httpEmail`, {
         toName: name,
@@ -37,34 +36,57 @@ class SendEmail extends Component {
   render() {
     return (
       <div className="send-email">
-        <h4>Send Gift Information by Email</h4>
-        <form className="send-email-form" onSubmit={this.sendEmail}>
-          <input
+        <h2>Send Gift Information by Email</h2>
+        <Form className="send-email-form" onSubmit={this.sendEmail}>
+          <Input
             name="name"
             ref={this.nameRef}
             type="text"
             placeholder="Name"
             required
           />
-          <input
+          <Input
             name="email"
             ref={this.emailRef}
             type="text"
             placeholder="Email"
             required
           />
-          <textarea
-            name="notes"
-            ref={this.notesRef}
-            id=""
-            cols="30"
-            rows="10"
-          />
-          <input type="submit" />
-        </form>
+          <Input type="submit" />
+        </Form>
       </div>
     );
   }
 }
 
 export default SendEmail;
+
+const Form = styled.form`
+  text-align: center;
+`;
+
+const Input = styled.input`
+  width: 90%;
+  color: #333;
+  background: #ffecda;
+  border: solid 1px #ff86a0;
+  border-radius: 2px;
+  margin: 15px auto;
+  font-size: 20px;
+
+  padding: 0.3rem 1rem;
+  &::placeholder {
+    color: #ff86a0;
+    font-style: italic;
+  }
+  &[type="submit"] {
+    text-align: center;
+    font-weight: bold;
+    color: #ff86a0;
+    background: #ffecda;
+  }
+  &[type="submit"]:hover {
+    background: #ff86a0;
+    color: #ffecda;
+  }
+`;
