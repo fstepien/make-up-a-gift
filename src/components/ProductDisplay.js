@@ -1,52 +1,80 @@
 import React from "react";
+import ProductItem from "./ProductItem"
 
 class ProductDisplay extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             dataLoaded: false,
-            locked: {
-                p1: false,
-                p2:false,
-                p3:false
+            products: {
+                product1: {
+                    locked: false,
+                    id: 0,
+                    type: ""
+                },
+                product2: {
+                    locked: false,
+                    id: 0,
+                    type: ""
+                },
+                product3: {
+                    locked: false,
+                    id: 0,
+                    type: ""
+                }
             }
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.product3 !== this.props.product3){
-            this.setState({dataLoaded: true});
+        if (nextProps.product3 !== this.props.product3 && nextProps.product2 !== this.props.product2 && nextProps.product1 !== this.props.product1) {
+            const {product1, product2, product3} = nextProps;
+            const {products} = this.state;
+            products.product1.id = product1.id;
+            products.product2.id = product2.id;
+            products.product3.id = product3.id;
+
+          this.setState({ dataLoaded: true, products });
         }
     }
 
-    toggleLock = product => {
-        const locked  = {...this.state.locked}
-        locked[product] = !locked[product];
-        this.setState({ locked });
+    toggleLock = (type, id) => {
+        const { products } = this.state;
+        console.log(products)
+        for(const product in products) {
+            console.log(products[product])
+            if(products[product].id === id){
+                products[product].locked = !products[product].locked;
+            }
+        }
     }
 
     render() {
        const {product1, product2, product3} = this.props;
-        return <div className="wrap type clearfix displayBox">
-            <div className="product product1">
-              <input type="button" value="lock" onClick={() => this.toggleLock("p1")} />
-              <img src={this.state.dataLoaded ? product1.image_link : null} className="displayImg" />
+       const {dataLoaded} = this.state;
+       
+       return( 
+        <div className="wrap type clearfix displayBox">
+            <div className="product">
+                {dataLoaded ? <ProductItem 
+                                product={product1} 
+                                toggleLock={this.toggleLock}
+                                /> : null}
             </div>
-            <div className="product product2">
-              <input type="button" value="lock" onClick={() => this.toggleLock("p2")} />
-              <img src={this.state.dataLoaded ? product2.image_link : null} className="displayImg" />
+            <div className="product">
+                {dataLoaded ? <ProductItem product={product2} 
+                                toggleLock={this.toggleLock}
+                                /> : null}
             </div>
-            <div className="product product3">
-              <input type="button" value="lock" onClick={() => this.toggleLock("p3")} />
-              <img src={this.state.dataLoaded ? product3.image_link : null} className="displayImg" />
+            <div className="product">
+                {dataLoaded ? <ProductItem product={product3} 
+                                toggleLock={this.toggleLock}
+                                /> : null}
             </div>
-            <input type="button" value="generate" onClick={() => this.props.generate(this.state.locked)} />
-          </div>;
-
+            <input type="button" value="generate" onClick={() => this.props.generate(this.state.products)} />
+        </div>
+       )
     }
-
 }
-
-
 
 export default ProductDisplay
