@@ -49,7 +49,14 @@ class App extends Component {
       nail_polish: { min: 0, max: 0, avg: 0 }
     },
     rates: { CAD: 1, GBP: 1, USD: 1 },
-    budget: { min: 1, max: 1000, range: 500 }
+    budget: {
+      min: null,
+      max: null,
+      range: null,
+      minThree: [],
+      maxThree: [],
+      loader: false
+    }
   };
 
   componentDidMount() {
@@ -105,33 +112,78 @@ class App extends Component {
         minmax[product].avg = parseInt(
           productPriceArr.reduce((a, b) => a + b, 0) / productPriceArr.length
         );
-        // add min and max to budget if they are lower or higher respectively then current price
-        // need to change placeholders or it will not work currently min: 1, max 1000
+
+        this.setState({ minmax }, this.checkThree());
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   };
 
   toggleSelect = key => {
     const selectedType = { ...this.state.selectedType };
     selectedType[key] = !selectedType[key];
-    this.setState({ selectedType });
+    this.setState({ selectedType }, this.checkThree);
+    //if three items are selected set budget
   };
 
-  setBudget = value => {
+  checkThree = () => {
+    Object.values(this.state.selectedType).reduce(
+      (accumulator, currentValue, currentIndex, array) =>
+        accumulator + currentValue
+    ) === 3
+      ? this.checkTypesLoaded()
+      : this.setBudgetRange(null);
+  };
+
+  checkTypesLoaded = () => {
+    const arraySelected = Object.keys(this.state.selectedType).filter(
+      key => this.state.selectedType[key]
+    );
+
+    // if data is available
+    if (arraySelected.every(type => this.state.products[type].length > 0)) {
+      console.log("data available");
+      const budget = { ...this.state.budget };
+      budget.loader = false;
+      this.setState({ budget });
+      this.setBudget();
+    } else {
+      console.log("NOT data available");
+      const budget = { ...this.state.budget };
+      budget.loader = true;
+      this.setState({ budget });
+    }
+  };
+
+  setBudget = () => {
+    const budget = { ...this.state.budget };
+    budget.minThree = [];
+    budget.maxThree = [];
+    const minmax = { ...this.state.minmax };
+    const arraySelected = Object.keys(this.state.selectedType).filter(
+      key => this.state.selectedType[key]
+    );
+    arraySelected.forEach(type => {
+      budget.minThree.push(this.state.minmax[type].min);
+      budget.maxThree.push(this.state.minmax[type].max);
+    });
+    // update min, max based on minThree and maxThree
+    budget.min = budget.minThree.reduce((acc, val) => acc + val);
+    budget.max = budget.maxThree.reduce((acc, val) => acc + val);
+    //set avarage
+    budget.range = parseInt((budget.min + budget.max) / 2);
+    //and display slider
+    this.setState({ budget }, this.setNewItems());
+  };
+
+  setBudgetRange = value => {
     const budget = { ...this.state.budget };
     budget.range = value;
     this.setState({ budget });
   };
 
-  // this function will be run on change of this.state.selectedType
-  //if .some are true use those numbers to calc min,max, if some true is false use all to calc min, max
-
-  // adjustBudget = () => {
-  //   budget = this.state.budget
-  //   console.log(minmax);
-  //   budget.min = Math.min([...minmax.map(product => product.min)]);
-  //   this.setState({ budget });
-  // }
+  setNewItems = () => {
+    console.log("set new items");
+  };
 
   generateDisplay = locked => {
     // Triggered when generate button is clicked in ProductDisplay
@@ -166,16 +218,23 @@ class App extends Component {
             />
           </div>
           <div className="slider wrap">
-            <Slider budget={this.state.budget} setBudget={this.setBudget} />
+            {this.state.budget.loader === true &&
+              this.state.budget.range === null && <div>display loader </div>}
+            {this.state.budget.range !== null && (
+              <Slider
+                budget={this.state.budget}
+                setBudget={this.setBudgetRange}
+              />
+            )}
           </div>
         </section>
         <section className="display wrap">
-          <ProductDisplay
+          {/* <ProductDisplay
             product1={product1}
             product2={product2}
             product3={product3}
             generate={this.generateDisplay}
-          />
+          /> */}
 
           <Toggle>
             {({ on, toggle }) => (
