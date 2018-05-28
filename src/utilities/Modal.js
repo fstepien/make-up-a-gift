@@ -9,13 +9,14 @@ export default class Modal extends Component {
     return (
       <Portal>
         {on && (
-          <ModalWrapper onClick={toggle}>
+          <ModalWrapper>
             <ModalCard>
               <CloseBtn onClick={toggle}>
                 <Icon name="close" />
               </CloseBtn>
               <div>{children}</div>
             </ModalCard>
+            <Background onClick={toggle} />
           </ModalWrapper>
         )}
       </Portal>
@@ -24,16 +25,11 @@ export default class Modal extends Component {
 }
 
 const ModalWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
 `;
 
 const ModalCard = styled.div`
-  position: relative;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -42,7 +38,7 @@ const ModalCard = styled.div`
   background: white;
   padding: 20px;
   border-radius: 2px;
-  z-index: 10px;
+  z-index: 10;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
   @media (max-width: 700px) {
     width: 90%;
@@ -59,6 +55,10 @@ const CloseBtn = styled.button`
 `;
 
 const Background = styled.div`
-  position: absolute;
-  width: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
 `;
