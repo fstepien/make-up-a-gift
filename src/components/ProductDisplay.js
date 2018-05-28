@@ -24,7 +24,7 @@ class ProductDisplay extends React.Component {
     componentWillReceiveProps(nextProps) {
         if(nextProps.product3 !== this.props.product3){
             const {products} = this.state;
-            for(let item in products){console.log(item)};
+            for(let item in products){};
             products.product1 = this.props.product1;
             products.product
             this.setState({dataLoaded: true,  });
@@ -32,7 +32,7 @@ class ProductDisplay extends React.Component {
     }
 
     toggleLock = product => {
-        console.log(product)
+        // console.log(product)
         const locked  = {...this.state.locked}
         locked[product] = !locked[product];
         this.setState({ locked });
