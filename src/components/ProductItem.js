@@ -2,7 +2,6 @@ import React from "react";
 
 
 const ProductItem = (props) => {
-    console.log(props)
     const {product, productNum, toggleLock} = props;
     return(
     <React.Fragment>
