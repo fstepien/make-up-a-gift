@@ -7,35 +7,46 @@ class ProductDisplay extends React.Component {
         this.state = {
             dataLoaded: false,
             products: {
-                1: {},
-                2: {},
-                3: {}
-            },
-            locked: {
-                p1: false,
-                p2:false,
-                p3:false
+                product1: {
+                    locked: false,
+                    id: 0,
+                    type: ""
+                },
+                product2: {
+                    locked: false,
+                    id: 0,
+                    type: ""
+                },
+                product3: {
+                    locked: false,
+                    id: 0,
+                    type: ""
+                }
             }
         }
     }
 
-    // STOPPED WORKING HERE
-    // Trying to get around the undefined problem by using componentWillReceiveProps()
     componentWillReceiveProps(nextProps) {
-        if(nextProps.product3 !== this.props.product3){
+        if (nextProps.product3 !== this.props.product3 && nextProps.product2 !== this.props.product2 && nextProps.product1 !== this.props.product1) {
+            const {product1, product2, product3} = nextProps;
             const {products} = this.state;
-            for(let item in products){};
-            products.product1 = this.props.product1;
-            products.product
-            this.setState({dataLoaded: true,  });
+            products.product1.id = product1.id;
+            products.product2.id = product2.id;
+            products.product3.id = product3.id;
+
+          this.setState({ dataLoaded: true, products });
         }
     }
 
-    toggleLock = product => {
-        // console.log(product)
-        const locked  = {...this.state.locked}
-        locked[product] = !locked[product];
-        this.setState({ locked });
+    toggleLock = (type, id) => {
+        const { products } = this.state;
+        console.log(products)
+        for(const product in products) {
+            console.log(products[product])
+            if(products[product].id === id){
+                products[product].locked = !products[product].locked;
+            }
+        }
     }
 
     render() {
@@ -44,19 +55,23 @@ class ProductDisplay extends React.Component {
        
        return( 
         <div className="wrap type clearfix displayBox">
-           <ProductItem product={product1} 
-                        toggleLock={this.toggleLock}
-                        productNum={"p1"}
-                        />
-           <ProductItem product={product2} 
-                        toggleLock={this.toggleLock}
-                        productNum={"p2"}
-                        />
-           <ProductItem product={product3} 
-                        toggleLock={this.toggleLock}
-                        productNum={"p3"}
-                        />
-            <input type="button" value="generate" onClick={() => this.props.generate(this.state.locked)} />
+            <div className="product product1">
+                {dataLoaded ? <ProductItem 
+                                product={product1} 
+                                toggleLock={this.toggleLock}
+                                /> : null}
+            </div>
+            <div className="product product1">
+                {dataLoaded ? <ProductItem product={product2} 
+                                toggleLock={this.toggleLock}
+                                /> : null}
+            </div>
+            <div className="product product1">
+                {dataLoaded ? <ProductItem product={product3} 
+                                toggleLock={this.toggleLock}
+                                /> : null}
+            </div>
+            <input type="button" value="generate" onClick={() => this.props.generate(this.state.products)} />
         </div>
        )
 
