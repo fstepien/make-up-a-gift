@@ -115,7 +115,7 @@ class App extends Component {
 
         this.setState({ minmax }, this.checkThree());
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   };
 
   toggleSelect = key => {
@@ -130,9 +130,7 @@ class App extends Component {
       (accumulator, currentValue, currentIndex, array) =>
         accumulator + currentValue
     ) === 3
-      ? // ? console.log(true)
-        // : console.log(false);
-        this.checkTypesLoaded()
+      ? this.checkTypesLoaded()
       : this.setBudgetRange(null);
   };
 
@@ -158,6 +156,8 @@ class App extends Component {
 
   setBudget = () => {
     const budget = { ...this.state.budget };
+    budget.minThree = [];
+    budget.maxThree = [];
     const minmax = { ...this.state.minmax };
     const arraySelected = Object.keys(this.state.selectedType).filter(
       key => this.state.selectedType[key]
@@ -166,21 +166,23 @@ class App extends Component {
       budget.minThree.push(this.state.minmax[type].min);
       budget.maxThree.push(this.state.minmax[type].max);
     });
-
     // update min, max based on minThree and maxThree
     budget.min = budget.minThree.reduce((acc, val) => acc + val);
     budget.max = budget.maxThree.reduce((acc, val) => acc + val);
-
     //set avarage
     budget.range = parseInt((budget.min + budget.max) / 2);
     //and display slider
-    this.setState({ budget });
+    this.setState({ budget }, this.setNewItems());
   };
 
   setBudgetRange = value => {
     const budget = { ...this.state.budget };
     budget.range = value;
     this.setState({ budget });
+  };
+
+  setNewItems = () => {
+    console.log("set new items");
   };
 
   generateDisplay = locked => {
