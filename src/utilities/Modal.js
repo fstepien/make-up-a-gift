@@ -39,7 +39,7 @@ const ModalCard = styled.div`
   padding: 20px;
   border-radius: 2px;
   z-index: 10;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
   @media (max-width: 700px) {
     width: 90%;
   }
@@ -60,5 +60,10 @@ const Background = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: url("/assets/trianglify.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  opacity: 0.8;
+  /* background: rgba(255, 236, 218, 0.75); */
 `;
