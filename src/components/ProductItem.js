@@ -5,7 +5,7 @@ const ProductItem = (props) => {
     console.log(props)
     return(
         <div className="product product1">
-            <input type="button" value="lock" onClick={() => this.toggleLock("p1")} />
+            <input type="button" value="lock" onClick={() => props.toggleLock("p1")} />
             <img src={props.loaded ? props.product.image_link : null} className="displayImg" />
       </div>
     )
