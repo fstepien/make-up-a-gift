@@ -133,7 +133,7 @@ class App extends Component {
   };
 
   checkThree = () => {
-    // console.log("running CheckThree");
+    console.log("running CheckThree");
     Object.values(this.state.selectedType).reduce(
       (accumulator, currentValue, currentIndex, array) =>
         accumulator + currentValue
@@ -188,7 +188,14 @@ class App extends Component {
   setBudgetRange = value => {
     const budget = { ...this.state.budget };
     budget.range = value;
-    this.setState({ budget }, this.setNewItems());
+    this.setState({ budget }, this.setNewItemsAftersetBudgetRange());
+  };
+
+  setNewItemsAftersetBudgetRange = () => {
+    Object.values(this.state.selectedType).reduce(
+      (accumulator, currentValue, currentIndex, array) =>
+        accumulator + currentValue
+    ) !== 0 && this.setNewItems();
   };
 
   setNewItems = () => {
