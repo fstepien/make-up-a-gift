@@ -9,17 +9,23 @@ class SendEmail extends Component {
     productTwo: "",
     categoryTwo: "",
     productThree: "",
-    categoryThree: ""
+    categoryThree: "",
+    mail: { name: "", email: "" }
   };
 
-  nameRef = React.createRef();
-  emailRef = React.createRef();
+  updateMail = e => {
+    const mail = { ...this.state.mail };
+    mail[e.target.name] = e.target.value;
+    this.setState({ mail });
+  };
 
   sendEmail = e => {
     e.preventDefault();
-    const name = this.nameRef.current.value;
-    const email = this.emailRef.current.value;
-    const url = "https://filipstepien.com";
+    const name = this.state.mail.name;
+    const email = this.state.mail.email;
+    const url = `https://makeupagift.filipstepien.com/your-gift/${
+      this.props.products.product1.id
+    }/${this.props.products.product2.id}/${this.props.products.product3.id}`;
     console.log(name, email);
     axios
       .post(`https://us-central1-make-up-a-gift.cloudfunctions.net/httpEmail`, {
@@ -40,14 +46,16 @@ class SendEmail extends Component {
         <Form className="send-email-form" onSubmit={this.sendEmail}>
           <Input
             name="name"
-            ref={this.nameRef}
+            value={this.state.mail.name}
+            onChange={e => this.updateMail(e)}
             type="text"
             placeholder="Name"
             required
           />
           <Input
             name="email"
-            ref={this.emailRef}
+            value={this.state.mail.email}
+            onChange={e => this.updateMail(e)}
             type="text"
             placeholder="Email"
             required
@@ -73,7 +81,6 @@ const Input = styled.input`
   border-radius: 2px;
   margin: 15px auto;
   font-size: 20px;
-
   padding: 0.3rem 1rem;
   &::placeholder {
     color: #ff86a0;
