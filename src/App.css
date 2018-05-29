@@ -48,31 +48,63 @@
 
 /* Slider styling */
 .sliderContainer {
-  border: 1px solid black;
+  text-align: center;
+}
+
+.slider input[type = "range"] {
+  padding: 0;
+  margin: 0 10px;
+  width: 30%;
+  height: 9px;
+  min-width: 200px;
+  cursor: pointer;
+  border: 3px solid hotpink;
+  border-radius: 2px;
+}
+
+/* Colors styling */
+.color {
+  display: inline-block;
+  width: 23px;
+  margin: 0 0 4px 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.colorList {
+  margin: 0;
+  position: absolute;
+  top: 103%;
+}
+
+.color:hover {
+  transform: scale(1.5);
 }
 
 /* ProductDisplay styling */
 .product {
-width: 33.33%;
-height: 250px;
-margin: 0 auto 20px auto;
-float: left;
-border: 1px solid black;
-position: relative;
+  width: 33.33%;
+  height: 250px;
+  margin: 0 auto 20px auto;
+  float: left;
+  border: 1px solid black;
+  position: relative;
 }
 
 .product input[type = "button"] {
-    width: 33%;
-    transform: translate(-50%, -100%);
-    position: absolute;
-    left: 50%;
-    top: -20px;
+  width: 33%;
+  transform: translate(-50%, -100%);
+  position: absolute;
+  left: 50%;
+  top: -20px;
 }
 
 .displayImg {
-    width: 50%;
-    margin: 0 auto;
-    display: block;
+  width: 50%;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 body {
