@@ -5,6 +5,7 @@ import Options from "./components/Options";
 import Selected from "./components/Selected";
 import Slider from "./components/Slider";
 import ProductDisplay from "./components/ProductDisplay";
+import Header from "./components/Header";
 
 //REMOVE SEND EMAIL AND THIS IMPORT AFTER IT IS PLACED IN MODAL
 import SendEmail from "./components/SendEmail";
@@ -264,9 +265,10 @@ class App extends Component {
     // ];
     return (
       <div className="App">
-        <header className="App-header">
+       <Header />
+        {/* <header className="App-header">
           <h1 className="App-title">Make Up A Gift</h1>
-        </header>
+        </header> */}
         <section className="select">
           <div className="wrap type clearfix">
             <Options

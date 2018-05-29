@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from 'axios';
-
-// http://localhost:3000/your-gift/blush-920/eyeliner-247/lipstick-885
+import Header from './Header';
 
 class PersonalGift extends Component {
   state = {
@@ -22,8 +21,7 @@ class PersonalGift extends Component {
         
       ids.map((id) => {          
         this.getProducts(products, id)
-      }); 
-      // this.setState({ products });             
+      });
     });    
   }
   
@@ -57,29 +55,22 @@ class PersonalGift extends Component {
           </div>
         )
       console.log(product.name);       
-    })
-    // products.map((product) => {
-    //   console.log(product);
-    // })
-    // console.log(markup);
-    
-    return markup;
-    
-    
-  
-
-    
-    
+    });    
+    return markup;   
   }
 
   render() {
     return (
+      <Fragment>
+        <Header/>
       <div className="wrap clearfix">
+  
         <h2>Your Personal Gift</h2>      
         <div>
           {this.renderProducts(this.state.products)}
         </div>
       </div>
+      </Fragment>
     )
   }
 }
