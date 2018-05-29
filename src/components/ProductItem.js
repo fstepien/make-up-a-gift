@@ -3,7 +3,7 @@ import Colors from "./Colors";
 
 
 const ProductItem = (props) => {
-
+    console.log(props)
     const {product, productNum, toggleLock} = props;
 
     return(

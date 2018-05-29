@@ -12,17 +12,17 @@ class ProductDisplay extends React.Component {
         product1: {
           locked: false,
           id: 0,
-          type: ""
+          type: {}
         },
         product2: {
           locked: false,
           id: 0,
-          type: ""
+          type: {}
         },
         product3: {
           locked: false,
           id: 0,
-          type: ""
+          type: {}
         }
       }
     };
@@ -34,12 +34,16 @@ class ProductDisplay extends React.Component {
       nextProps.product2 !== this.props.product2 &&
       nextProps.product1 !== this.props.product1
     ) {
+  
       const { product1, product2, product3 } = nextProps;
-      const { products } = this.state;
+      const products = Object.assign({}, this.state.products);
       products.product1.id = product1.id;
+      products.product1.type = product1;
       products.product2.id = product2.id;
+      products.product2.type = product2;
       products.product3.id = product3.id;
-
+      products.product3.type = product3;
+      
       this.setState({ dataLoaded: true, products });
     }
   }
@@ -51,6 +55,7 @@ class ProductDisplay extends React.Component {
       console.log(products[product]);
       if (products[product].id === id) {
         products[product].locked = !products[product].locked;
+        this.setState({products});
       }
     }
   };
