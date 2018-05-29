@@ -45,35 +45,43 @@ class ProductDisplay extends React.Component {
   }
 
   toggleLock = (type, id) => {
-    const { products } = this.state;
-    console.log(products);
+    const products = Object.assign({}, this.state.products);
     for (const product in products) {
-      console.log(products[product]);
       if (products[product].id === id) {
         products[product].locked = !products[product].locked;
+        this.setState({products});
       }
     }
   };
 
   render() {
     const { product1, product2, product3 } = this.props;
-    const { dataLoaded } = this.state;
+    const { dataLoaded, products } = this.state;
 
     return (
       <div className="wrap type clearfix displayBox">
         <div className="product">
           {dataLoaded ? (
-            <ProductItem product={product1} toggleLock={this.toggleLock} />
+            <ProductItem 
+              product={product1} 
+              toggleLock={this.toggleLock} 
+              locked={products.product1.locked}/>
           ) : null}
         </div>
         <div className="product">
           {dataLoaded ? (
-            <ProductItem product={product2} toggleLock={this.toggleLock} />
+            <ProductItem 
+              product={product2} 
+              toggleLock={this.toggleLock} 
+              locked={products.product2.locked}/>
           ) : null}
         </div>
         <div className="product">
           {dataLoaded ? (
-            <ProductItem product={product3} toggleLock={this.toggleLock} />
+            <ProductItem 
+              product={product3} 
+              toggleLock={this.toggleLock} 
+              locked={products.product3.locked}/>
           ) : null}
         </div>
         <input
