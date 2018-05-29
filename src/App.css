@@ -92,17 +92,12 @@
   text-align: center;
 }
 
-.product input[type = "button"] {
-  width: 33%;
+.productBtn {
+  height: 60px;
   transform: translate(-50%, -100%);
   position: absolute;
   left: 50%;
-  top: -20px;
-   
-}
-
-.displayBtn {
-  
+  top: 0;
 }
 
 .displayImg {
