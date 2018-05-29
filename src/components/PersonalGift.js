@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import axios from 'axios';
 import Header from './Header';
+import Footer from './Footer';
+import styled from 'styled-components';
+import '../App.css';
 
 class PersonalGift extends Component {
   state = {
@@ -51,7 +54,7 @@ class PersonalGift extends Component {
           <div className="product" key={i}>
             <p>{product.name} by - {product.brand.toUpperCase()}</p>
             <img src={product.api_featured_image} alt={product.name} className="displayImg"/>
-            <a href={product.product_link} target="_blank">Buy me</a>
+            <a href={product.product_link} target="_blank" className="buy-me">Buy me</a>
           </div>
         )
       console.log(product.name);       
@@ -63,16 +66,18 @@ class PersonalGift extends Component {
     return (
       <Fragment>
         <Header/>
-      <div className="wrap clearfix">
-  
-        <h2>Your Personal Gift</h2>      
-        <div>
-          {this.renderProducts(this.state.products)}
+        <div className="wrap clearfix personal-gift">  
+          <h2>Your Personal Gift</h2>      
+          <div>
+            {this.renderProducts(this.state.products)}
+          </div>
         </div>
-      </div>
+        <Footer />
       </Fragment>
     )
   }
 }
 
 export default PersonalGift;
+
+

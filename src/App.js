@@ -6,6 +6,7 @@ import Selected from "./components/Selected";
 import Slider from "./components/Slider";
 import ProductDisplay from "./components/ProductDisplay";
 import Header from "./components/Header";
+import Footer from './components/Footer';
 
 class App extends Component {
   state = {
@@ -115,6 +116,7 @@ class App extends Component {
         this.setState({ minmax }, this.checkThree());
       })
       .catch(err => {
+        //api has
         this.props.history.push(`/your-gift/920/247/885`);
         console.log(err);
       });
@@ -184,13 +186,13 @@ class App extends Component {
     //and display slider
     this.setState({ budget }, this.setNewItems());
   };
-
+  //setNewItems callback required to change items on slider change but needs to go indeirectly through seNewItemsAftersetBudgetRange
   setBudgetRange = value => {
     const budget = { ...this.state.budget };
     budget.range = value;
     this.setState({ budget }, this.setNewItemsAftersetBudgetRange());
   };
-
+  //without this function setNewItems is run even when all selectedTypes are false causing error
   setNewItemsAftersetBudgetRange = () => {
     Object.values(this.state.selectedType).reduce(
       (accumulator, currentValue, currentIndex, array) =>
@@ -263,6 +265,7 @@ class App extends Component {
   generateDisplay = locked => {
     // Triggered when generate button is clicked in ProductDisplay
     // Locked product state passed from ProductDisplay
+    console.log(locked);
   };
 
   render() {
@@ -304,6 +307,7 @@ class App extends Component {
             />
           )}
         </section>
+        <Footer />
       </div>
     );
   }
