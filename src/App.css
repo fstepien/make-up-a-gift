@@ -46,6 +46,11 @@
   width: 33.33%;
 }
 
+/* Slider styling */
+.sliderContainer {
+  border: 1px solid black;
+}
+
 /* ProductDisplay styling */
 .product {
 width: 33.33%;
