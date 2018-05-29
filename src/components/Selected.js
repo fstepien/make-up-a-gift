@@ -9,15 +9,17 @@ class Selected extends React.Component {
         {Object.keys(selectedType)
           .filter(key => selectedType[key])
           .map((key, i) => (
-            <Overdrive id={key} key={key}>
-              <div
-                className="type-list-item"
-                name={key}
-                onClick={() => toggleSelect(key)}
-              >
-                {key.replace(/_/g, " ").toUpperCase()}
-              </div>
-            </Overdrive>
+            <div key={key}>
+              <Overdrive id={key} key={key}>
+                <div
+                  className="type-list-item"
+                  name={key}
+                  onClick={() => toggleSelect(key)}
+                >
+                  {key.replace(/_/g, " ").toUpperCase()}
+                </div>
+              </Overdrive>
+            </div>
           ))}
       </div>
     );

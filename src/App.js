@@ -179,30 +179,66 @@ class App extends Component {
   setBudgetRange = value => {
     const budget = { ...this.state.budget };
     budget.range = value;
-    this.setState({ budget });
+    this.setState({ budget }, this.setNewItems());
   };
 
   setNewItems = () => {
-    const arraySelected = Object.keys(this.state.selectedType)
-      .filter(key => this.state.selectedType[key])
-      .map(type => {
-        const allocatedForType = this.state.budget.range / 3;
-        const average = this.state.minmax[type].avg;
-        return this.state.products[type].filter(
-          product => product.price <= allocatedForType
-        );
-      });
+    let range = this.state.budget.range;
 
-    // From this.state.product, get the matching product.  Filter through the array to get products <= typeXAvg, put them in an array
-
-    console.log(arraySelected);
-
-    // get a random item from that array and display the product
-    const randomProducts = arraySelected.map(
-      singleArray => singleArray[Math.floor(Math.random() * singleArray.length)]
+    const selectedTypeArrays = Object.keys(this.state.selectedType).filter(
+      key => this.state.selectedType[key]
     );
-    console.log(randomProducts);
-    this.setState({ randomProducts });
+    console.log("selected type array", selectedTypeArrays);
+
+    const idPriceArrays = selectedTypeArrays.map(type => {
+      return this.state.products[type].map(product => {
+        return { [product.id]: product.price };
+      });
+    });
+    let randomProducts = [];
+    while (range) {
+      range = parseInt(range);
+      randomProducts = this.getRandomProducts(idPriceArrays);
+      console.log(randomProducts);
+      let randomTotal = 0;
+      randomTotal = randomProducts
+        .map(object => parseInt(Object.values(object)))
+        .reduce((acc, cur) => acc + cur);
+      console.log(randomTotal, range);
+      randomTotal <= range
+        ? console.log("within budget")
+        : console.log("out of budget");
+      if (randomTotal <= range) {
+        console.log(randomProducts);
+        // get array of ids
+        const ids = randomProducts.map(object => Object.keys(object)[0]);
+
+        const products = [];
+
+        ids.forEach(id =>
+          Object.values(this.state.products).forEach(type =>
+            type.forEach(
+              product => product.id === parseInt(id) && products.push(product)
+            )
+          )
+        );
+
+        console.log(products);
+        this.setState({ randomProducts: products });
+        break;
+      }
+    }
+  };
+
+  getRandomProducts = idPriceArrays => {
+    const randomProducts = idPriceArrays.map(
+      array => array[Math.floor(Math.random() * array.length)]
+    );
+
+    // const randomId = idPricesArrays.map(
+    //   singleArray => singleArray[Math.floor(Math.random() * singleArray.length)]
+    // );
+    return randomProducts;
   };
 
   generateDisplay = locked => {
