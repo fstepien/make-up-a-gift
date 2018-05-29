@@ -63,7 +63,6 @@ const Background = styled.div`
   background: url("/assets/trianglify.svg");
   background-repeat: no-repeat;
   background-size: cover;
-
   opacity: 0.8;
   /* background: rgba(255, 236, 218, 0.75); */
 `;

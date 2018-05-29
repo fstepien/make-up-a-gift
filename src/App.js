@@ -56,7 +56,8 @@ class App extends Component {
       minThree: [],
       maxThree: [],
       loader: false
-    }
+    },
+    randomProducts: []
   };
 
   componentDidMount() {
@@ -182,7 +183,26 @@ class App extends Component {
   };
 
   setNewItems = () => {
-    console.log("set new items");
+    const arraySelected = Object.keys(this.state.selectedType)
+      .filter(key => this.state.selectedType[key])
+      .map(type => {
+        const allocatedForType = this.state.budget.range / 3;
+        const average = this.state.minmax[type].avg;
+        return this.state.products[type].filter(
+          product => product.price <= allocatedForType
+        );
+      });
+
+    // From this.state.product, get the matching product.  Filter through the array to get products <= typeXAvg, put them in an array
+
+    console.log(arraySelected);
+
+    // get a random item from that array and display the product
+    const randomProducts = arraySelected.map(
+      singleArray => singleArray[Math.floor(Math.random() * singleArray.length)]
+    );
+    console.log(randomProducts);
+    this.setState({ randomProducts });
   };
 
   generateDisplay = locked => {
@@ -191,16 +211,15 @@ class App extends Component {
   };
 
   render() {
-    const product1 = this.state.products.blush[
-      Math.floor(Math.random() * this.state.products.blush.length)
-    ];
-    const product2 = this.state.products.eyebrow[
-      Math.floor(Math.random() * this.state.products.eyebrow.length)
-    ];
-    const product3 = this.state.products.mascara[
-      Math.floor(Math.random() * this.state.products.mascara.length)
-    ];
-
+    // const product1 = this.state.products.blush[
+    //   Math.floor(Math.random() * this.state.products.blush.length)
+    // ];
+    // const product2 = this.state.products.eyebrow[
+    //   Math.floor(Math.random() * this.state.products.eyebrow.length)
+    // ];
+    // const product3 = this.state.products.mascara[
+    //   Math.floor(Math.random() * this.state.products.mascara.length)
+    // ];
     return (
       <div className="App">
         <header className="App-header">
@@ -230,9 +249,9 @@ class App extends Component {
         </section>
         <section className="display wrap">
           <ProductDisplay
-            product1={product1}
-            product2={product2}
-            product3={product3}
+            product1={this.state.randomProducts[0]}
+            product2={this.state.randomProducts[1]}
+            product3={this.state.randomProducts[2]}
             generate={this.generateDisplay}
           />
 
