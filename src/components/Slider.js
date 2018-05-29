@@ -9,7 +9,7 @@ const Slider = props => {
         <input
           type="range"
           min={(props.budget.min / 100)}
-          max={props.budget.max / 100}
+          max={(props.budget.max / 100)}
           onChange={e => {
             props.setBudget(e.target.value);
           }}
