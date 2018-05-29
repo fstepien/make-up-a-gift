@@ -12,7 +12,7 @@ const Slider = props => {
   return (
     <div className="sliderContainer">
       <p>Budget: {rangeDollar} </p>
-      <span>
+      <span className="slider">
         {minDollar}
         <input
           type="range"
