@@ -6,6 +6,7 @@ import Selected from "./components/Selected";
 import Slider from "./components/Slider";
 import ProductDisplay from "./components/ProductDisplay";
 import Header from "./components/Header";
+import Footer from './components/Footer';
 
 class App extends Component {
   state = {
@@ -306,6 +307,7 @@ class App extends Component {
             />
           )}
         </section>
+        <Footer />
       </div>
     );
   }

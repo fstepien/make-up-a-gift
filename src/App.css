@@ -114,3 +114,22 @@ body {
 h1 {
   font-family: "Parisienne", cursive;
 }
+
+a.buy-me {
+  text-decoration: none;
+}
+
+.personal-gift h2 {
+  text-align: center;
+}
+
+footer.App-footer {
+  background: #3e4040;
+  padding: 25px 0;
+
+}
+
+.App-footer p {
+  color:  #ffecda;
+  text-align: center;
+}
