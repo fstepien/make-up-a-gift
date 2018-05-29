@@ -28,7 +28,7 @@
 .type-list {
   float: left;
   width: calc(50% - 20px);
-  border: 1px solid black;
+  border: 1px solid #FF86A0;
   text-align: center;
   min-height: 450px;
 }
@@ -36,11 +36,18 @@
   margin-right: 40px;
 }
 .type-list-item {
+  background: #FFECDA;
   text-align: center;
   width: 50%;
-  border: 1px solid black;
+  border: 1px solid #FF86A0;
+  letter-spacing: 1px;
   margin: 3px auto;
   padding: 0.3rem 1rem;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+.type-list-item:hover {
+  border: 1px solid#FF004F;
 }
 .displayBox > input[type="button"] {
   margin: 0 auto;
@@ -105,13 +112,16 @@ section.display {
   top: 0;
 }
 
-input[class="generate"] {
-  background: #FF004F;
-  border: 1px solid transparent;
-  padding: 5px;
+input[value="generate"] {
+  background: #FFECDA;
+  border: 1px solid #FF86A0;
   letter-spacing: 1px;
+  padding: 5px;
   border-radius: 2px;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
+}
+input[value="generate"]:active {
+  box-shadow: none;
 }
 
 .displayImg {
