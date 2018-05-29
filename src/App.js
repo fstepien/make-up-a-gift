@@ -5,7 +5,6 @@ import Options from "./components/Options";
 import Selected from "./components/Selected";
 import Slider from "./components/Slider";
 import ProductDisplay from "./components/ProductDisplay";
-import { Toggle, Portal, Modal } from "./utilities";
 
 //REMOVE SEND EMAIL AND THIS IMPORT AFTER IT IS PLACED IN MODAL
 import SendEmail from "./components/SendEmail";
@@ -184,30 +183,38 @@ class App extends Component {
 
   setNewItems = () => {
     let range = this.state.budget.range;
-
+    //returns an array of type names
     const selectedTypeArrays = Object.keys(this.state.selectedType).filter(
       key => this.state.selectedType[key]
     );
     console.log("selected type array", selectedTypeArrays);
-
+    //returns an array of objects for each type that contains id as the key and price as the value
     const idPriceArrays = selectedTypeArrays.map(type => {
       return this.state.products[type].map(product => {
         return { [product.id]: product.price };
       });
     });
     let randomProducts = [];
+    //calls getRandomProducts untill it finds three products that are below the range
     while (range) {
       range = parseInt(range);
       randomProducts = this.getRandomProducts(idPriceArrays);
       console.log(randomProducts);
       let randomTotal = 0;
+      //sums the price of random products
       randomTotal = randomProducts
         .map(object => parseInt(Object.values(object)))
         .reduce((acc, cur) => acc + cur);
-      console.log(randomTotal, range);
+      console.log(randomTotal, "budget", range);
+
       randomTotal <= range
         ? console.log("within budget")
         : console.log("out of budget");
+      //stops searching if it finds a product within range
+      if (range == this.state.budget.min) {
+        console.log("mind budget");
+        break;
+      }
       if (randomTotal <= range) {
         console.log(randomProducts);
         // get array of ids
@@ -222,7 +229,6 @@ class App extends Component {
             )
           )
         );
-
         console.log(products);
         this.setState({ randomProducts: products });
         break;
@@ -284,23 +290,17 @@ class App extends Component {
           </div>
         </section>
         <section className="display wrap">
-          <ProductDisplay
-            product1={this.state.randomProducts[0]}
-            product2={this.state.randomProducts[1]}
-            product3={this.state.randomProducts[2]}
-            generate={this.generateDisplay}
-          />
-
-          <Toggle>
-            {({ on, toggle }) => (
-              <Fragment>
-                <button onClick={toggle}>Email My Results</button>
-                <Modal on={on} toggle={toggle}>
-                  <SendEmail />
-                </Modal>
-              </Fragment>
-            )}
-          </Toggle>
+          {Object.values(this.state.selectedType).reduce(
+            (accumulator, currentValue, currentIndex, array) =>
+              accumulator + currentValue
+          ) === 3 && (
+            <ProductDisplay
+              product1={this.state.randomProducts[0]}
+              product2={this.state.randomProducts[1]}
+              product3={this.state.randomProducts[2]}
+              generate={this.generateDisplay}
+            />
+          )}
         </section>
       </div>
     );
