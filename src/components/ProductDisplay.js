@@ -49,6 +49,7 @@ class ProductDisplay extends React.Component {
     for (const product in products) {
       if (products[product].id === id) {
         products[product].locked = !products[product].locked;
+        products[product].type = type;
         this.setState({products});
       }
     }
