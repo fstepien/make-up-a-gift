@@ -25,7 +25,6 @@ class Options extends React.Component {
             <Overdrive id={key} key={key}>
               <div
                 className="type-list-item"
-                key={i}
                 name={key}
                 onClick={() => this.checkToggleLimit(key)}
               >
