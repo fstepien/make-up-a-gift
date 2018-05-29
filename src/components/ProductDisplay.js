@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ProductItem from "./ProductItem";
-import { Toggle, Portal, Modal } from "./../utilities";
+import { Toggle, Modal } from "./../utilities";
 import SendEmail from "./SendEmail";
 
 class ProductDisplay extends React.Component {
@@ -86,7 +86,7 @@ class ProductDisplay extends React.Component {
             <Fragment>
               <button onClick={toggle}>Email My Results</button>
               <Modal on={on} toggle={toggle}>
-                <SendEmail products={this.state.products} />
+                <SendEmail products={this.state.products} toggle={toggle} />
               </Modal>
             </Fragment>
           )}

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 import Options from "./components/Options";
@@ -6,9 +6,6 @@ import Selected from "./components/Selected";
 import Slider from "./components/Slider";
 import ProductDisplay from "./components/ProductDisplay";
 import Header from "./components/Header";
-
-//REMOVE SEND EMAIL AND THIS IMPORT AFTER IT IS PLACED IN MODAL
-import SendEmail from "./components/SendEmail";
 
 class App extends Component {
   state = {
@@ -96,7 +93,8 @@ class App extends Component {
           .map(product => {
             product.currency === null && (product.currency = "CAD");
             product.price = parseInt(
-              Number(product.price) * this.state.rates[product.currency] * 100
+              Number(product.price) * this.state.rates[product.currency] * 100,
+              0
             );
             return product;
           });
@@ -116,7 +114,10 @@ class App extends Component {
 
         this.setState({ minmax }, this.checkThree());
       })
-      .catch(err => alert(err));
+      .catch(err => {
+        this.props.history.push(`/your-gift/920/247/885`);
+        console.log(err);
+      });
   };
 
   toggleSelect = key => {
@@ -124,9 +125,15 @@ class App extends Component {
     selectedType[key] = !selectedType[key];
     this.setState({ selectedType }, this.checkThree);
     //if three items are selected set budget
+    const budget = { ...this.state.budget };
+
+    budget.range = parseInt((budget.min + budget.max) / 2);
+
+    this.setState({ budget });
   };
 
   checkThree = () => {
+    console.log("running CheckThree");
     Object.values(this.state.selectedType).reduce(
       (accumulator, currentValue, currentIndex, array) =>
         accumulator + currentValue
@@ -136,6 +143,7 @@ class App extends Component {
   };
 
   checkTypesLoaded = () => {
+    // console.log("running checktypesLoaded");
     const arraySelected = Object.keys(this.state.selectedType).filter(
       key => this.state.selectedType[key]
     );
@@ -163,6 +171,7 @@ class App extends Component {
     const arraySelected = Object.keys(this.state.selectedType).filter(
       key => this.state.selectedType[key]
     );
+    console.log(arraySelected);
     arraySelected.forEach(type => {
       budget.minThree.push(this.state.minmax[type].min);
       budget.maxThree.push(this.state.minmax[type].max);
@@ -179,7 +188,14 @@ class App extends Component {
   setBudgetRange = value => {
     const budget = { ...this.state.budget };
     budget.range = value;
-    this.setState({ budget }, this.setNewItems());
+    this.setState({ budget }, this.setNewItemsAftersetBudgetRange());
+  };
+
+  setNewItemsAftersetBudgetRange = () => {
+    Object.values(this.state.selectedType).reduce(
+      (accumulator, currentValue, currentIndex, array) =>
+        accumulator + currentValue
+    ) !== 0 && this.setNewItems();
   };
 
   setNewItems = () => {
@@ -188,7 +204,7 @@ class App extends Component {
     const selectedTypeArrays = Object.keys(this.state.selectedType).filter(
       key => this.state.selectedType[key]
     );
-    console.log("selected type array", selectedTypeArrays);
+    // console.log("selected type array", selectedTypeArrays);
     //returns an array of objects for each type that contains id as the key and price as the value
     const idPriceArrays = selectedTypeArrays.map(type => {
       return this.state.products[type].map(product => {
@@ -200,24 +216,24 @@ class App extends Component {
     while (range) {
       range = parseInt(range);
       randomProducts = this.getRandomProducts(idPriceArrays);
-      console.log(randomProducts);
+      // console.log(randomProducts);
       let randomTotal = 0;
       //sums the price of random products
       randomTotal = randomProducts
         .map(object => parseInt(Object.values(object)))
         .reduce((acc, cur) => acc + cur);
-      console.log(randomTotal, "budget", range);
+      // console.log(randomTotal, "budget", range);
 
-      randomTotal <= range
-        ? console.log("within budget")
-        : console.log("out of budget");
+      // randomTotal <= range
+      //   ? console.log("within budget")
+      //   : console.log("out of budget");
       //stops searching if it finds a product within range
       if (range == this.state.budget.min) {
-        console.log("mind budget");
+        console.log("min budget");
         break;
       }
       if (randomTotal <= range) {
-        console.log(randomProducts);
+        // console.log(randomProducts);
         // get array of ids
         const ids = randomProducts.map(object => Object.keys(object)[0]);
 
@@ -230,7 +246,7 @@ class App extends Component {
             )
           )
         );
-        console.log(products);
+        // console.log(products);
         this.setState({ randomProducts: products });
         break;
       }
@@ -241,10 +257,6 @@ class App extends Component {
     const randomProducts = idPriceArrays.map(
       array => array[Math.floor(Math.random() * array.length)]
     );
-
-    // const randomId = idPricesArrays.map(
-    //   singleArray => singleArray[Math.floor(Math.random() * singleArray.length)]
-    // );
     return randomProducts;
   };
 
@@ -254,21 +266,9 @@ class App extends Component {
   };
 
   render() {
-    // const product1 = this.state.products.blush[
-    //   Math.floor(Math.random() * this.state.products.blush.length)
-    // ];
-    // const product2 = this.state.products.eyebrow[
-    //   Math.floor(Math.random() * this.state.products.eyebrow.length)
-    // ];
-    // const product3 = this.state.products.mascara[
-    //   Math.floor(Math.random() * this.state.products.mascara.length)
-    // ];
     return (
       <div className="App">
-       <Header />
-        {/* <header className="App-header">
-          <h1 className="App-title">Make Up A Gift</h1>
-        </header> */}
+        <Header />
         <section className="select">
           <div className="wrap type clearfix">
             <Options

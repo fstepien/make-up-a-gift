@@ -10,7 +10,8 @@ class SendEmail extends Component {
     categoryTwo: "",
     productThree: "",
     categoryThree: "",
-    mail: { name: "", email: "" }
+    mail: { name: "", email: "" },
+    sentEmail: false
   };
 
   updateMail = e => {
@@ -36,13 +37,26 @@ class SendEmail extends Component {
       .then(res => {
         console.log(res);
       })
+      .then(() => {
+        let mail = { ...this.state.mail };
+        mail = { name: "", email: "" };
+        this.setState({ mail }, this.emailSent());
+      })
       .catch(err => console.log(err));
+  };
+
+  emailSent = () => {
+    this.setState({ sentEmail: true });
+    setTimeout(() => this.props.toggle(), 1600);
   };
 
   render() {
     return (
       <div className="send-email">
         <h2>Send Gift Information by Email</h2>
+        {this.state.sentEmail && (
+          <SentMessage>Your Email Was Sent!</SentMessage>
+        )}
         <Form className="send-email-form" onSubmit={this.sendEmail}>
           <Input
             name="name"
@@ -96,4 +110,8 @@ const Input = styled.input`
     background: #ff86a0;
     color: #ffecda;
   }
+`;
+
+const SentMessage = styled.p`
+  color: green;
 `;
