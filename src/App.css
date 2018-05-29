@@ -54,7 +54,7 @@
 .slider input[type = "range"] {
   padding: 0;
   margin: 0 10px;
-  width: 30%;
+  width: 50%;
   height: 9px;
   min-width: 200px;
   cursor: pointer;
@@ -84,11 +84,12 @@
 /* ProductDisplay styling */
 .product {
   width: 33.33%;
-  height: 250px;
+  height: 300px;
   margin: 0 auto 20px auto;
   float: left;
   border: 1px solid black;
   position: relative;
+  text-align: center;
 }
 
 .product input[type = "button"] {
@@ -97,12 +98,17 @@
   position: absolute;
   left: 50%;
   top: -20px;
+   
+}
+
+.displayBtn {
+  
 }
 
 .displayImg {
   width: 50%;
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
 }

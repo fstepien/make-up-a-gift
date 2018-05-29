@@ -40,7 +40,6 @@ class ProductDisplay extends React.Component {
 
     toggleLock = (type, id) => {
         const { products } = this.state;
-        console.log(products)
         for(const product in products) {
             console.log(products[product])
             if(products[product].id === id){
@@ -51,24 +50,30 @@ class ProductDisplay extends React.Component {
 
     render() {
        const {product1, product2, product3} = this.props;
-       const {dataLoaded} = this.state;
+       const {dataLoaded, products} = this.state;
+    //    const {product1: as, product2:asd, product3: asd} = this.state.products
        
        return( 
-        <div className="wrap type clearfix displayBox">
+        <div className="type clearfix displayBox">
             <div className="product">
                 {dataLoaded ? <ProductItem 
                                 product={product1} 
                                 toggleLock={this.toggleLock}
+                                locked={products.product1.locked}
                                 /> : null}
             </div>
             <div className="product">
-                {dataLoaded ? <ProductItem product={product2} 
+                {dataLoaded ? <ProductItem 
+                                product={product2} 
                                 toggleLock={this.toggleLock}
+                                locked={products.product2.locked}
                                 /> : null}
             </div>
             <div className="product">
-                {dataLoaded ? <ProductItem product={product3} 
+                {dataLoaded ? <ProductItem 
+                                product={product3} 
                                 toggleLock={this.toggleLock}
+                                locked={products.product3.locked}
                                 /> : null}
             </div>
             <input type="button" value="generate" onClick={() => this.props.generate(this.state.products)} />
