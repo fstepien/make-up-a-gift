@@ -48,9 +48,9 @@ class PersonalGift extends Component {
     const newArray = Array.from(arrayToCopy);
 
     let markup = [];
-    newArray.map((product) => {
+    newArray.map((product, i) => {
         markup.push(
-          <div className="product">
+          <div className="product" key={i}>
             <p>{product.name} by - {product.brand.toUpperCase()}</p>
             <img src={product.api_featured_image} alt={product.name} className="displayImg"/>
             <a href={product.product_link} target="_blank">Buy me</a>
