@@ -2,7 +2,7 @@
 .App-header {
   background: url("/assets/trianglify.svg");
   background-size: cover;
-  height: 300px;
+  height: 20vh;
   padding: 20px;
   color: white;
 }
@@ -214,6 +214,9 @@ section.display {
   margin-bottom: 50px;
   position: relative;
 }
+.displayBox {
+  padding-bottom: 145px;
+}
 .product {
   width: calc((100% - 20px) / 3);
   height: 325px;
@@ -247,15 +250,7 @@ section.display {
   left: 50%;
   top: 0;
 }
-
-input[value="generate"] {
-  margin: 0 auto;
-  display: block;
-  width: 33.33%;
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
+.generate {
   background: #FFECDA;
   border: 2px solid #FF86A0;
   color: #FF004F;
@@ -265,7 +260,9 @@ input[value="generate"] {
   box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
   margin: 100px;
 }
-input[value="generate"]:active {
+/* input[value="generate"] {
+} */
+.generate:active {
   box-shadow: none;
 }
 .product-name {
@@ -290,8 +287,18 @@ h1 {
 
 
 /* Personal Gift section */
+.personal-gift {
+  height: 65vh;
+}
+@media (max-width: 640px) {
+  .personal-gift {
+    height: inherit;
+  }
+}
 .personal-gift h2 {
   text-align: center;
+  margin: 0;
+  padding: 20px 0;
 }
 
 a.buy-me {
@@ -308,21 +315,19 @@ a.buy-me {
 /* Footer Styles */
 footer.App-footer {
   background: #3e4040;
-  padding: 25px 0;
-
+  padding: 35px 0;
+  height: 15vh;
 }
 
 .App-footer p {
   color:  white;
   text-align: center;
 }
-
 .App-footer a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
-
 .App-footer a:hover {
   color: #ff86a0;
 }
