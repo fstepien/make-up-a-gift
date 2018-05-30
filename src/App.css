@@ -22,6 +22,11 @@
   max-width: 900px;
   margin: 0 auto;
 }
+@media (max-width: 820px) {
+  .wrap {
+    width: 100%;
+  }
+}
 .type {
   margin-top: 70px;
 }
@@ -206,8 +211,12 @@ section.display {
 }
 .product {
   width: calc((100% - 20px) / 3);
+<<<<<<< HEAD
   min-width: 280px;
   height: 300px;
+=======
+  height: 325px;
+>>>>>>> 99375c92acb4eb81013ee20570c261db99edd82e
   margin: 0 10px 20px 0;
   float: left;
   border: 2px solid #FF86A0;
@@ -218,7 +227,11 @@ section.display {
 }
 @media (max-width: 640px) {
   .product {
+<<<<<<< HEAD
     width: 325px;
+=======
+    width: 300px;
+>>>>>>> 99375c92acb4eb81013ee20570c261db99edd82e
     margin: 0 auto 10px;
     float: none;
   }
@@ -259,6 +272,10 @@ input[value="generate"] {
 input[value="generate"]:active {
   box-shadow: none;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 99375c92acb4eb81013ee20570c261db99edd82e
 .product-name {
   min-height: 45px;
   font-weight: bold;
@@ -311,9 +328,9 @@ footer.App-footer {
 .App-footer a {
   color: white;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .App-footer a:hover {
-  font-weight: bold;
   color: #ff86a0;
 }
