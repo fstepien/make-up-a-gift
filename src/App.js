@@ -6,7 +6,7 @@ import Selected from "./components/Selected";
 import Slider from "./components/Slider";
 import ProductDisplay from "./components/ProductDisplay";
 import Header from "./components/Header";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 class App extends Component {
   state = {
@@ -55,7 +55,29 @@ class App extends Component {
       maxThree: [],
       loader: false
     },
-    randomProducts: []
+    randomProducts: [],
+    locked: {
+      product1: {
+        locked: false,
+        id: 0,
+        type: ""
+      },
+      product2: {
+        locked: false,
+        id: 0,
+        type: ""
+      },
+      product3: {
+        locked: false,
+        id: 0,
+        type: ""
+      }
+    },
+    lockedProducts: {
+      product1: {},
+      product2: {},
+      product3: {}
+    }
   };
 
   componentDidMount() {
@@ -265,7 +287,8 @@ class App extends Component {
   generateDisplay = locked => {
     // Triggered when generate button is clicked in ProductDisplay
     // Locked product state passed from ProductDisplay
-    console.log(locked);
+    // console.log(locked);
+    this.setState({ locked }, this.checkThree());
   };
 
   render() {
@@ -300,9 +323,21 @@ class App extends Component {
               accumulator + currentValue
           ) === 3 && (
             <ProductDisplay
-              product1={this.state.randomProducts[0]}
-              product2={this.state.randomProducts[1]}
-              product3={this.state.randomProducts[2]}
+              product1={
+                !this.state.locked.product1.locked
+                  ? this.state.randomProducts[0]
+                  : this.state.locked.product1.type
+              }
+              product2={
+                !this.state.locked.product2.locked
+                  ? this.state.randomProducts[1]
+                  : this.state.locked.product2.type
+              }
+              product3={
+                !this.state.locked.product3.locked
+                  ? this.state.randomProducts[2]
+                  : this.state.locked.product3.type
+              }
               generate={this.generateDisplay}
             />
           )}
