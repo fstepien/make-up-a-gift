@@ -231,7 +231,6 @@ section.display {
 @media (max-width: 640px) {
   .product {
     width: 325px;
-    margin: 0 auto 65px;
     float: none;
   }
 }
@@ -259,13 +258,7 @@ section.display {
   padding: 5px;
   border-radius: 2px;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
-  margin: 0 auto;
-  display: block;
-  width: 33.33%;
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);  
+  margin: 100px;
 }
 /* input[value="generate"] {
 } */
