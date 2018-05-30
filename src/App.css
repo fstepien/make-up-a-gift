@@ -211,12 +211,10 @@ section.display {
 }
 .product {
   width: calc((100% - 20px) / 3);
-<<<<<<< HEAD
   min-width: 280px;
   height: 300px;
-=======
+  
   height: 325px;
->>>>>>> 99375c92acb4eb81013ee20570c261db99edd82e
   margin: 0 10px 20px 0;
   float: left;
   border: 2px solid #FF86A0;
@@ -227,11 +225,7 @@ section.display {
 }
 @media (max-width: 640px) {
   .product {
-<<<<<<< HEAD
     width: 325px;
-=======
-    width: 300px;
->>>>>>> 99375c92acb4eb81013ee20570c261db99edd82e
     margin: 0 auto 10px;
     float: none;
   }
@@ -268,14 +262,11 @@ input[value="generate"] {
   padding: 5px;
   border-radius: 2px;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
+  margin: 100px;
 }
 input[value="generate"]:active {
   box-shadow: none;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 99375c92acb4eb81013ee20570c261db99edd82e
 .product-name {
   min-height: 45px;
   font-weight: bold;
