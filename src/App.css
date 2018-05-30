@@ -198,6 +198,11 @@ input[type=range]:focus::-ms-fill-upper {
   position: absolute;
   top: 103%;
 }
+@media (max-width: 640px) {
+  .colorList {
+    top: 84%;
+  }
+}
 
 .color:hover {
   transform: scale(1.5);
@@ -211,9 +216,6 @@ section.display {
 }
 .product {
   width: calc((100% - 20px) / 3);
-  min-width: 280px;
-  height: 300px;
-  
   height: 325px;
   margin: 0 10px 20px 0;
   float: left;
@@ -226,7 +228,6 @@ section.display {
 @media (max-width: 640px) {
   .product {
     width: 325px;
-    margin: 0 auto 10px;
     float: none;
   }
 }
