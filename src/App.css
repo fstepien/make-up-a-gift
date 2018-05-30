@@ -232,6 +232,7 @@ section.display {
   .product {
     width: 325px;
     float: none;
+    margin: 60px auto;
   }
 }
 .product:last-of-type {
