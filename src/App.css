@@ -153,6 +153,12 @@ input[type = "range"] {
   position: absolute;
   top: 103%;
 }
+@media (max-width: 640px) {
+  .colorList {
+    position: relative;
+    z-index: 10;
+  }
+}
 
 .color:hover {
   transform: scale(1.5);
@@ -176,7 +182,7 @@ section.display {
 @media (max-width: 640px) {
   .product {
     width: 300px;
-    margin: 0 auto 10px;
+    margin: 0 auto 65px;
     float: none;
   }
 }
