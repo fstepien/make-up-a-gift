@@ -13,7 +13,8 @@ const ProductItem = (props) => {
             src={props.locked ? "/assets/lock.svg" : "/assets/unlock.svg"}
             className="productBtn"
             onClick={() => props.toggleLock(product.product_type, product.id)} />
-        <h3>{product.name.replace(/\b\w/g, l => l.toUpperCase())}</h3>
+        <p className="product-name">{product.name.replace(/\b\w/g, l => l.toUpperCase())}</p>
+        <p>By - {product.brand.toUpperCase()}</p>
         <img src={product.api_featured_image} className="displayImg" />
         <Colors colors={props.product.product_colors}
                 id={props.product.id}/>
