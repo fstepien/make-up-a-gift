@@ -2,7 +2,7 @@
 .App-header {
   background: url("/assets/trianglify.svg");
   background-size: cover;
-  height: 300px;
+  height: 20vh;
   padding: 20px;
   color: white;
 }
@@ -337,10 +337,17 @@ h1 {
 
 /* Personal Gift section */
 .personal-gift {
-  padding-bottom: 110px;
+  height: 65vh;
+}
+@media (max-width: 640px) {
+  .personal-gift {
+    height: inherit;
+  }
 }
 .personal-gift h2 {
   text-align: center;
+  margin: 0;
+  padding: 20px 0;
 }
 
 a.buy-me {
@@ -357,25 +364,19 @@ a.buy-me {
 /* Footer Styles */
 footer.App-footer {
   background: #3e4040;
-  padding: 15px 0;
-  position: relative;
-  bottom: 0;
-  height: 100px;
-  width: 100%;
-
+  padding: 35px 0;
+  height: 15vh;
 }
 
 .App-footer p {
   color:  white;
   text-align: center;
 }
-
 .App-footer a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
-
 .App-footer a:hover {
   color: #ff86a0;
 }
