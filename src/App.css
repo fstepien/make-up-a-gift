@@ -82,6 +82,7 @@
 
 .colorList {
   margin: 0;
+  padding: 0;
   position: absolute;
   top: 103%;
 }
@@ -95,13 +96,15 @@ section.display {
   padding: 25px 0;
 }
 .product {
-  width: 33.33%;
+  width: calc((100% - 30px) / 3);
   height: 300px;
-  margin: 0 auto 20px auto;
+  margin: 0 10px 20px 0;
   float: left;
-  border: 1px solid black;
+  border: 2px solid #FF86A0;
+  border-radius: 2px;
   position: relative;
   text-align: center;
+  background: white;
 }
 
 .productBtn {
@@ -110,6 +113,9 @@ section.display {
   position: absolute;
   left: 50%;
   top: 0;
+}
+body {
+  background: #ffecda;
 }
 
 input[value="generate"] {
