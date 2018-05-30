@@ -71,6 +71,7 @@
 }
 .type-list-item:hover {
   border: 1px solid#FF004F;
+  transform: scale(1.02);
 }
 
 /* Slider styling */
@@ -105,11 +106,11 @@ input[type=range]::-webkit-slider-thumb {
   background: #ffffff;
   cursor: pointer;
   margin-top: -14px;
-  box-shadow: 3px 6px 9px rgba(0,0,0,0.7);
+  box-shadow: 3px 6px 9px rgba(0,0,0,0.5);
 }
 
 input[type=range]::-moz-range-thumb {
-  box-shadow: 3px 6px 9px rgba(0,0,0,0.7);
+  box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.5);
   border: 1px solid #FF004F;
   height: 36px;
   width: 16px;
@@ -148,13 +149,13 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 8.4px;
   cursor: pointer;
   box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
-  background: #24221f;
+  background: #3e4040;
   border-radius: 1.3px;
   border: 0.5px solid #FF004F;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #24221f;
+  background: #3e4040;
 }
 
 input[type=range]::-moz-range-track {
@@ -162,7 +163,7 @@ input[type=range]::-moz-range-track {
   height: 8.4px;
   cursor: pointer;
   box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
-  background: #24221f;
+  background: #3e4040;
   border-radius: 1.3px;
   border: 0.5px solid #FF004F;
 }
@@ -177,16 +178,16 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: #24221f;
+  background: #3e4040;
   border: 0.2px solid #FF004F;
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #24221f;
+  background: #3e4040;
 }
 input[type=range]::-ms-fill-upper {
-  background: #24221f;
+  background: #3e4040;
   border: 0.2px solid #FF004F;
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
@@ -268,6 +269,10 @@ section.display {
   top: 0;
 }
 
+.productBtn:hover {
+  transform: translate(-50%, -100%) scale(1.3);
+}
+
 .emailBtn {
   width: 20%;
   position: absolute;
@@ -275,7 +280,7 @@ section.display {
   transform: translateX(-50%);
   bottom: 10px;
   height: 36.5px;
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
   border: 1.5px solid #FF004F;
   border-radius: 2px;
   background: #FFECDA;
@@ -286,8 +291,8 @@ section.display {
 
 .emailBtn:hover {
   border: 2px solid #FF004F;
-  transform: translateX(-50%) scale(1.01);
-  box-shadow: 3px 6px 9px rgba(0,0,0,0.7);
+  transform: translateX(-50%) scale(1.02);
+  box-shadow: 3px 6px 9px rgba(0,0,0,0.6);
 }
 
 .emailBtn:active {
@@ -309,19 +314,19 @@ input[value="generate"] {
   letter-spacing: 1px;
   padding: 5px;
   border-radius: 2px;
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
   font-weight: bold;
 }
 
 input[value="generate"]:hover {
   border: 2px solid #FF004F;
-  transform: translateX(-50%) scale(1.01);
-  box-shadow: 3px 6px 9px rgba(0,0,0,0.7);
+  transform: translateX(-50%) scale(1.02);
+  box-shadow: 3px 6px 9px rgba(0,0,0,0.6);
 }
 
 input[value="generate"]:active {
   transform: translateX(-50%) scale(1);
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
 }
 
 input[value="generate"]:active {
@@ -378,7 +383,7 @@ a.buy-me {
 footer.App-footer {
   background: #3e4040;
   padding: 35px 0;
-  height: 15vh;
+  height: 18vh;
 }
 
 .App-footer p {
