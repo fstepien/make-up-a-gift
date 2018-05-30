@@ -40,8 +40,20 @@
   background: #ffecda;
   margin-bottom: 50px;
 }
+
+@media (max-width: 640px) {
+  .type-list {
+    float: none;
+    margin: 5px auto;
+  }
+}
 .type-list:first-of-type {
   margin-right: 40px;
+}
+@media (max-width: 640px) {
+  .type-list:first-of-type {
+    margin: 0 auto;
+  }
 }
 .type-list-item {
   background:#ffecda;
