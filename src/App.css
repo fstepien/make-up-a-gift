@@ -223,11 +223,14 @@ section.display {
 .product {
   width: calc((100% - 20px) / 3);
 <<<<<<< HEAD
+<<<<<<< HEAD
   min-width: 280px;
   height: 300px;
   
 =======
 >>>>>>> 04930dd1fc064a9e52546f8fd4152ded46c50fbc
+=======
+>>>>>>> 04d060879a33acd674e47d119d87eb448731b754
   height: 325px;
   margin: 0 10px 20px 0;
   float: left;
@@ -241,10 +244,13 @@ section.display {
   .product {
     width: 325px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin: 0 auto 10px;
 =======
     margin: 0 auto 65px;
 >>>>>>> 04930dd1fc064a9e52546f8fd4152ded46c50fbc
+=======
+>>>>>>> 04d060879a33acd674e47d119d87eb448731b754
     float: none;
   }
 }
