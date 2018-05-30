@@ -55,11 +55,6 @@
   border: 1px solid#FF004F;
   color: #FF004F;
 }
-.displayBox > input[type="button"] {
-  margin: 0 auto;
-  display: block;
-  width: 33.33%;
-}
 
 /* Slider styling */
 input[type=range] {
@@ -96,9 +91,8 @@ input[type=range]::-webkit-slider-thumb {
   box-shadow: 1px 1px 1px #36332f, 0px 0px 1px #36332f;
 }
 
-/* All the same stuff for Firefox */
 input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #36332f, 0px 0px 1px #36332f;
+  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
   border: 1px solid #FF004F;
   height: 36px;
   width: 16px;
@@ -107,9 +101,8 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 
-/* All the same stuff for IE */
 input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #36332f, 0px 0px 1px #36332f;
+  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
   border: 1px solid #FF004F;
   height: 36px;
   width: 16px;
@@ -131,6 +124,58 @@ input[type = "range"] {
   cursor: pointer;
   border: 3px solid #FF86A0;
   border-radius: 2px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
+  background: #24221f;
+  border-radius: 1.3px;
+  border: 0.5px solid #FF004F;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #24221f;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
+  background: #24221f;
+  border-radius: 1.3px;
+  border: 0.5px solid #FF004F;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #24221f;
+  border: 0.2px solid #FF004F;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #24221f;
+}
+input[type=range]::-ms-fill-upper {
+  background: #24221f;
+  border: 0.2px solid #FF004F;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #3E4040;
 }
 
 /* Colors styling */
@@ -156,15 +201,13 @@ input[type = "range"] {
 /* ProductDisplay styling */
 section.display {
   padding: 25px 0;
+  margin-bottom: 50px;
+  position: relative;
 }
 .product {
-  width: calc((100% - 30px) / 3);
-<<<<<<< HEAD
+  width: calc((100% - 20px) / 3);
   min-width: 280px;
   height: 300px;
-=======
-  height: 325px;
->>>>>>> 21e96ac78598bf2631b1df2fa58b9856d1d3cf61
   margin: 0 10px 20px 0;
   float: left;
   border: 2px solid #FF86A0;
@@ -172,6 +215,21 @@ section.display {
   position: relative;
   text-align: center;
   background: white;
+}
+@media (max-width: 640px) {
+  .product {
+    width: 325px;
+    margin: 0 auto 10px;
+    float: none;
+  }
+}
+.product:last-of-type {
+  margin-right: 0;
+}
+@media (max-width: 640px) {
+  .product:last-of-type {
+    margin: 0 auto 10px;
+  }
 }
 
 .productBtn {
@@ -183,21 +241,31 @@ section.display {
 }
 
 input[value="generate"] {
+  margin: 0 auto;
+  display: block;
+  width: 33.33%;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #FFECDA;
-  border: 1px solid #FF86A0;
+  border: 2px solid #FF86A0;
+  color: #FF004F;
   letter-spacing: 1px;
   padding: 5px;
   border-radius: 2px;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
-  margin: 100px;
 }
 input[value="generate"]:active {
   box-shadow: none;
 }
-
+.product-name {
+  min-height: 45px;
+  font-weight: bold;
+}
 .displayImg {
   max-width: 175px;
-  max-height: 175px;
+  max-height: 150px;
   display: block;
   margin: 0 auto;
 }
