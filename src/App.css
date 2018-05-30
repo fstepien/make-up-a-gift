@@ -97,7 +97,7 @@ section.display {
 }
 .product {
   width: calc((100% - 30px) / 3);
-  height: 300px;
+  height: 325px;
   margin: 0 10px 20px 0;
   float: left;
   border: 2px solid #FF86A0;
@@ -131,11 +131,10 @@ input[value="generate"]:active {
 }
 
 .displayImg {
-  width: 50%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  max-width: 175px;
+  max-height: 175px;
+  display: block;
+  margin: 0 auto;
 }
 
 body {
@@ -155,6 +154,10 @@ h1 {
 a.buy-me {
   text-decoration: none;
 }
+.buy-me img {
+  margin-top: 15px;
+  height: 45px;
+}
 
 /* Footer Styles */
 footer.App-footer {
@@ -164,6 +167,16 @@ footer.App-footer {
 }
 
 .App-footer p {
-  color:  #ffecda;
+  color:  white;
   text-align: center;
+}
+
+.App-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.App-footer a:hover {
+  font-weight: bold;
+  color: #ff86a0;
 }
