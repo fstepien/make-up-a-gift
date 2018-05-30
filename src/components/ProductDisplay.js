@@ -95,9 +95,9 @@ class ProductDisplay extends React.Component {
         <input type="button" value="generate" onClick={() => this.props.generate(this.state.products)} />
         <Toggle>
           {({ on, toggle }) => <Fragment>
-              <button onClick={toggle}>Email My Results</button>
+              <button className="emailBtn" onClick={toggle}>Email My Results</button>
               <Modal on={on} toggle={toggle}>
-                <SendEmail className="emailBtn" products={this.state.products} toggle={toggle} />
+                <SendEmail products={this.state.products} toggle={toggle} />
               </Modal>
             </Fragment>}
         </Toggle>
