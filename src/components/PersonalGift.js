@@ -50,7 +50,7 @@ class PersonalGift extends Component {
     let markup = [];
     newArray.map((product, i) => {
         markup.push(<div className="product" key={i}>
-            <p>{product.name}</p>
+            <p className="product-name">{product.name}</p>
             <p>By - {product.brand.toUpperCase()}</p>
             <img src={product.api_featured_image} alt={product.name} className="displayImg" />
             <a href={product.product_link} target="_blank" className="buy-me"><img src="/assets/shoppingbag.svg" alt="Buy me"/></a>
