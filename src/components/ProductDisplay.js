@@ -59,11 +59,12 @@ class ProductDisplay extends React.Component {
   };
 
   render() {
+    const state = Object.assign({}, this.state);
     const { product1, product2, product3 } = this.props;
-    const { dataLoaded, products } = this.state;
+    const { dataLoaded, products } = state;
 
     return (
-      <div className="wrap type clearfix displayBox">
+      <div className="type clearfix displayBox">
         <div className="product">
           {dataLoaded ? (
             <ProductItem 
