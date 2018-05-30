@@ -80,6 +80,8 @@ class App extends Component {
     }
   };
 
+  sliderRef = React.createRef();
+
   componentDidMount() {
     axios({
       method: "GET",
@@ -311,6 +313,7 @@ class App extends Component {
               <Slider
                 budget={this.state.budget}
                 setBudget={this.setBudgetRange}
+                ref={this.sliderRef}
               />
             )}
           </div>

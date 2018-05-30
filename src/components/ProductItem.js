@@ -7,8 +7,7 @@ const ProductItem = props => {
 
   return (
     <React.Fragment>
-      <input
-        type="image"
+      <img
         src={props.locked ? "/assets/lock.svg" : "/assets/unlock.svg"}
         className="productBtn"
         onClick={() => props.toggleLock(product.product_type, product.id)}

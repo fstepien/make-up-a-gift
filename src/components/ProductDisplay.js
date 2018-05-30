@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import ProductItem from "./ProductItem";
 import { Toggle, Modal } from "./../utilities";
 import SendEmail from "./SendEmail";
+import Icon from "./../utilities/Icon";
 
 class ProductDisplay extends Component {
   constructor(props) {
@@ -48,10 +49,11 @@ class ProductDisplay extends Component {
   }
 
   toggleLock = (type, id) => {
-    const { products } = this.state;
-    console.log(products);
+    // const { products } = this.state;
+    const products = { ...this.state.products };
+    // console.log(products);
     for (const product in products) {
-      console.log(products[product]);
+      // console.log(products[product]);
       if (products[product].id === id) {
         products[product].locked = !products[product].locked;
         this.setState({ products });
@@ -73,7 +75,9 @@ class ProductDisplay extends Component {
               toggleLock={this.toggleLock}
               locked={products.product1.locked}
             />
-          ) : null}
+          ) : (
+            <Icon className="loading-icon" name="lipstick" />
+          )}
         </div>
         <div className="product">
           {dataLoaded ? (
@@ -82,7 +86,9 @@ class ProductDisplay extends Component {
               toggleLock={this.toggleLock}
               locked={products.product2.locked}
             />
-          ) : null}
+          ) : (
+            <Icon className="loading-icon" name="lipstick" />
+          )}
         </div>
         <div className="product">
           {dataLoaded ? (
@@ -91,11 +97,13 @@ class ProductDisplay extends Component {
               toggleLock={this.toggleLock}
               locked={products.product3.locked}
             />
-          ) : null}
+          ) : (
+            <Icon className="loading-icon" name="lipstick" />
+          )}
         </div>
         <input
           type="button"
-          value="generate"
+          value="generate new items"
           onClick={() => this.props.generate(this.state.products)}
         />
         <Toggle>
