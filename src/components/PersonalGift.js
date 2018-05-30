@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
-import styled from 'styled-components';
 import '../App.css';
 
 class PersonalGift extends Component {
@@ -22,9 +21,9 @@ class PersonalGift extends Component {
     this.setState({ ids }, () => {
       const products = this.state.products;      
         
-      ids.map((id) => {          
+      ids.map(id =>           
         this.getProducts(products, id)
-      });
+      );
     });    
   }
   

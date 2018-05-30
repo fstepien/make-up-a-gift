@@ -10,6 +10,3 @@ const Footer = () => (
 )
 
 export default Footer;
-
-
-// 3e4040;
