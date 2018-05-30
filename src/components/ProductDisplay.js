@@ -97,7 +97,7 @@ class ProductDisplay extends React.Component {
           {({ on, toggle }) => <Fragment>
               <button onClick={toggle}>Email My Results</button>
               <Modal on={on} toggle={toggle}>
-                <SendEmail className="emailBtn" products={this.state.products} toggle={toggle} />
+                <SendEmail products={this.state.products} toggle={toggle} />
               </Modal>
             </Fragment>}
         </Toggle>

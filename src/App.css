@@ -54,6 +54,7 @@
   border-radius: 2px;
   transition: 0.2s;
   color: #FF004F;
+  cursor: pointer;
   
 }
 .type-list-item:hover {
@@ -202,6 +203,11 @@ input[type=range]:focus::-ms-fill-upper {
 .color:hover {
   transform: scale(1.5);
 }
+@media (max-width: 640px) {
+  .colorList {
+    top: 84%;
+  }
+}
 
 /* ProductDisplay styling */
 section.display {
@@ -262,7 +268,6 @@ input[value="generate"] {
   padding: 5px;
   border-radius: 2px;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
-  margin: 100px;
 }
 input[value="generate"]:active {
   box-shadow: none;
