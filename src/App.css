@@ -159,8 +159,12 @@ section.display {
 }
 .product {
   width: calc((100% - 30px) / 3);
+<<<<<<< HEAD
   min-width: 280px;
   height: 300px;
+=======
+  height: 325px;
+>>>>>>> 21e96ac78598bf2631b1df2fa58b9856d1d3cf61
   margin: 0 10px 20px 0;
   float: left;
   border: 2px solid #FF86A0;
@@ -219,6 +223,10 @@ a.buy-me {
   margin-top: 15px;
   height: 45px;
 }
+.buy-me img {
+  margin-top: 15px;
+  height: 45px;
+}
 
 /* Footer Styles */
 footer.App-footer {
@@ -228,6 +236,16 @@ footer.App-footer {
 }
 
 .App-footer p {
-  color:  #ffecda;
+  color:  white;
   text-align: center;
+}
+
+.App-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.App-footer a:hover {
+  font-weight: bold;
+  color: #ff86a0;
 }
