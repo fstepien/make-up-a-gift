@@ -1,5 +1,4 @@
 import React from "react";
-import Colors from "./Colors";
 
 const ProductItem = props => {
   // console.log(props);

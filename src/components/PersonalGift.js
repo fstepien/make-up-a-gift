@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../App.css";
+import ProductItem from "./ProductItem";
 
 class PersonalGift extends Component {
   state = {
@@ -32,7 +33,6 @@ class PersonalGift extends Component {
       responseType: "json"
     })
       .then(res => {
-        // products.push(res.data);
         const prodClone = Array.from(this.state.products);
         prodClone.push(res.data);
         this.setState({
@@ -42,39 +42,20 @@ class PersonalGift extends Component {
       .catch(err => console.log(err));
   };
 
-  renderProducts = arrayToCopy => {
-    const newArray = Array.from(arrayToCopy);
-
-    let markup = [];
-    newArray.map((product, i) => {
-      markup.push(
-        <div className="product" key={i}>
-          <p className="product-name">{product.name}</p>
-          <p>By - {product.brand.toUpperCase()}</p>
-          <img
-            src={product.api_featured_image}
-            alt={product.name}
-            className="displayImg"
-          />
-          <a href={product.product_link} target="_blank" className="buy-me">
-            <img src="/assets/shoppingbag.svg" alt="Buy me" />
-          </a>
-        </div>
-      );
-      console.log(product.name);
-    });
-    return markup;
-  };
-
   render() {
     return (
       <Fragment>
         <Header />
-        <div className="wrap clearfix personal-gift">
-          <h2>Your Personal Gift</h2>
-          <div>{this.renderProducts(this.state.products)}</div>
+        <h2>Your Personal Gift</h2>
+        <div className="wrap clearfix display-box">
+          {this.state.products.map((product, i) => {
+            return (
+              <div className="product" style={{ overflow: "hidden" }}>
+                <ProductItem product={product} />
+              </div>
+            );
+          })}
         </div>
-        {/* <Footer /> */}
       </Fragment>
     );
   }
