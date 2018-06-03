@@ -101,6 +101,9 @@ const Input = styled.input`
     font-style: italic;
   }
   &[type="submit"] {
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 3px;
     text-align: center;
     font-weight: bold;
     color: #ff86a0;

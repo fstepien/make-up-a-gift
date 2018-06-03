@@ -162,7 +162,10 @@ input::-moz-focus-inner {
   box-sizing: border-box;
 }
 body {
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Lato", sans-serif;
+  background: url("/assets/trianglify.svg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 h1,
 h2,
@@ -170,5 +173,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Parisienne", cursive;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
 }

@@ -166,7 +166,7 @@ class App extends Component {
         accumulator + currentValue
     ) === 3
       ? this.checkTypesLoaded()
-      : this.setBudgetRange(null);
+      : "";
   };
 
   checkTypesLoaded = () => {
@@ -213,8 +213,10 @@ class App extends Component {
   };
   //setNewItems callback required to change items on slider change but needs to go indeirectly through seNewItemsAftersetBudgetRange
   setBudgetRange = value => {
+    // return;
     const budget = { ...this.state.budget };
     budget.range = value;
+
     this.setState({ budget }, this.setNewItemsAftersetBudgetRange());
   };
   //without this function setNewItems is run even when all selectedTypes are false causing error
@@ -310,13 +312,17 @@ class App extends Component {
             />
           </div>
           <div className="slider wrap">
-            {this.state.budget.range !== null && (
-              <Slider
-                budget={this.state.budget}
-                setBudget={this.setBudgetRange}
-                ref={this.sliderRef}
-              />
-            )}
+            {Object.values(this.state.selectedType).reduce(
+              (accumulator, currentValue, currentIndex, array) =>
+                accumulator + currentValue
+            ) === 3 &&
+              this.state.budget.range !== null && (
+                <Slider
+                  budget={this.state.budget}
+                  setBudget={this.setBudgetRange}
+                  ref={this.sliderRef}
+                />
+              )}
           </div>
         </section>
         <section className="display wrap">
@@ -344,7 +350,7 @@ class App extends Component {
             />
           )}
         </section>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

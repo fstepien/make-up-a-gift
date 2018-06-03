@@ -17,12 +17,9 @@ const ProductItem = props => {
           {product.name.replace(/\b\w/g, l => l.toUpperCase())}
         </p>
       )}
-      {product.brand && <p>By - {product.brand.toUpperCase()}</p>}
+      {product.brand && <p>{product.brand.toUpperCase()}</p>}
       {product.api_featured_image && (
         <img src={product.api_featured_image} className="displayImg" />
-      )}
-      {props.product.product_colors && (
-        <Colors colors={props.product.product_colors} id={props.product.id} />
       )}
     </React.Fragment>
   );

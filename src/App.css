@@ -1,13 +1,19 @@
 /* Header Styles */
 .App-header {
-  background: url("/assets/trianglify.svg");
-  background-size: cover;
   height: 20vh;
   padding: 20px;
-  color: white;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.815),
+    rgba(255, 255, 255, 0)
+  );
 }
 
 .App-title {
+  text-transform: uppercase;
+  font-weight: 300;
+  /* text-shadow: 1px 1px 3px #ff86a091; */
+  color: black;
+  letter-spacing: 0.4em;
   font-size: 60px;
   text-align: center;
   position: relative;
@@ -38,20 +44,23 @@
 .type-list {
   float: left;
   width: calc(50% - 20px);
-  border: 2px solid #ff86a0;
+  border: 2px solid white;
   border-radius: 2px;
   text-align: center;
   min-height: 450px;
-  background: #ffecda;
+  background: white;
   margin-bottom: 50px;
   transform: width 0.5 ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 @media (max-width: 640px) {
   .type-list {
     float: none;
-    margin: 5px auto;
+    margin: 10px auto;
     width: calc(90% - 20px);
+    min-height: 50px;
+    padding-bottom: 20px;
   }
 }
 .type-list:first-of-type {
@@ -63,22 +72,27 @@
   }
 }
 .type-list-item {
-  background: #ffecda;
+  /* background: #ffecda56;
+   */
+  font-weight: 400;
   text-align: center;
   width: 50%;
-  border: 1px solid #ff86a0;
+  border: 1px solid rgba(68, 58, 58, 0.39);
   letter-spacing: 1px;
   margin: 3px auto;
   padding: 0.3rem 1rem;
   border-radius: 2px;
   transition: 0.2s;
-  color: #ff004f;
+  color: rgb(68, 58, 58);
   cursor: pointer;
   transform: width 0.5 ease;
 }
+h2 {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
 .type-list-item:hover {
-  border: 1px solid#FF004F;
-  transform: scale(1.02);
+  border: 1px solid rgb(0, 0, 0);
 }
 @media (max-width: 700px) {
   .type-list-item {
@@ -250,11 +264,18 @@ section.display {
   height: 325px;
   margin: 0 10px 20px 0;
   float: left;
-  border: 2px solid #ff86a0;
+
   border-radius: 2px;
   position: relative;
   text-align: center;
   background: white;
+
+  border: 2px solid white;
+
+  background: white;
+
+  transform: width 0.5 ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 @media (max-width: 1092px) {
   .product {
@@ -294,30 +315,26 @@ section.display {
 }
 
 .emailBtn {
-  width: 20%;
+  font-weight: 400 !important;
+  width: 40%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 10px;
   height: 36.5px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
-  border: 1.5px solid #ff004f;
+  text-transform: uppercase;
+  border: 2px solid #696969;
   border-radius: 2px;
-  background: #ffecda;
-  color: #ff004f;
-  letter-spacing: 1px;
+  background: white;
+  color: black;
+  letter-spacing: 3px;
   font-weight: bold;
+  transition: all ease 0.3s;
 }
 
-.emailBtn:hover {
-  border: 2px solid #ff004f;
-  transform: translateX(-50%) scale(1.02);
-  box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.6);
-}
-
+.emailBtn:hover,
 .emailBtn:active {
-  transform: translateX(-50%) scale(1);
-  box-shadow: none;
+  transform: translateY(2px) translateX(-50%);
 }
 
 .displayBox > input {
@@ -369,15 +386,6 @@ i .displayBox input:hover {
   max-height: 150px;
   display: block;
   margin: 0 auto;
-}
-
-body {
-  font-family: "Noto Sans", sans-serif;
-  background: #ffecda;
-}
-
-h1 {
-  font-family: "Parisienne", cursive;
 }
 
 /* Personal Gift section */
@@ -443,4 +451,8 @@ footer.App-footer {
   to {
     transform: rotate(360deg);
   }
+}
+
+.send-email {
+  text-align: center;
 }

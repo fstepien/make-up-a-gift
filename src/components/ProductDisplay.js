@@ -5,29 +5,26 @@ import SendEmail from "./SendEmail";
 import Icon from "./../utilities/Icon";
 
 class ProductDisplay extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataLoaded: false,
-      products: {
-        product1: {
-          locked: false,
-          id: 0,
-          type: {}
-        },
-        product2: {
-          locked: false,
-          id: 0,
-          type: {}
-        },
-        product3: {
-          locked: false,
-          id: 0,
-          type: {}
-        }
+  state = {
+    dataLoaded: false,
+    products: {
+      product1: {
+        locked: false,
+        id: 0,
+        type: {}
+      },
+      product2: {
+        locked: false,
+        id: 0,
+        type: {}
+      },
+      product3: {
+        locked: false,
+        id: 0,
+        type: {}
       }
-    };
-  }
+    }
+  };
 
   componentWillReceiveProps(nextProps) {
     if (
@@ -103,14 +100,14 @@ class ProductDisplay extends Component {
         </div>
         <input
           type="button"
-          value="generate new items"
+          value="Let's See More Products"
           onClick={() => this.props.generate(this.state.products)}
         />
         <Toggle>
           {({ on, toggle }) => (
             <Fragment>
               <button className="emailBtn" onClick={toggle}>
-                Email My Results
+                Send Me This List
               </button>
               <Modal on={on} toggle={toggle}>
                 <SendEmail products={this.state.products} toggle={toggle} />

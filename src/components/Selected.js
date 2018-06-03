@@ -6,7 +6,7 @@ class Selected extends React.Component {
     const { selectedType, toggleSelect } = this.props;
     return (
       <div className="type-list">
-        <h2>Selected:</h2>
+        <h2>Selected</h2>
         {Object.keys(selectedType)
           .filter(key => selectedType[key])
           .map(key => (
