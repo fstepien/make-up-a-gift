@@ -167,6 +167,13 @@ class App extends Component {
     ) === 3
       ? this.checkTypesLoaded()
       : "";
+    // : this.setBudgetRange(null);
+    // Object.values(this.state.selectedType).reduce(
+    //   (accumulator, currentValue, currentIndex, array) =>
+    //     accumulator + currentValue
+    // ) < 1 && this.state.budget.loader
+    //   ? this.setBudgetRange(null)
+    //   : "";
   };
 
   checkTypesLoaded = () => {
@@ -179,13 +186,13 @@ class App extends Component {
     if (arraySelected.every(type => this.state.products[type].length > 0)) {
       console.log("data available");
       const budget = { ...this.state.budget };
-      budget.loader = false;
+      budget.loader = true;
       this.setState({ budget });
       this.setBudget();
     } else {
       console.log("data loading...");
       const budget = { ...this.state.budget };
-      budget.loader = true;
+      budget.loader = false;
       this.setState({ budget });
     }
   };
@@ -251,11 +258,7 @@ class App extends Component {
       randomTotal = randomProducts
         .map(object => parseInt(Object.values(object)))
         .reduce((acc, cur) => acc + cur);
-      // console.log(randomTotal, "budget", range);
 
-      // randomTotal <= range
-      //   ? console.log("within budget")
-      //   : console.log("out of budget");
       //stops searching if it finds a product within range
       if (range == this.state.budget.min) {
         console.log("min budget");
@@ -300,6 +303,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <h2 className="wrap">
+          Design your personal gift. <br />start by selecting three make up
+          categories
+        </h2>
         <section className="select">
           <div className="wrap type clearfix">
             <Options

@@ -10,7 +10,7 @@ class Selected extends React.Component {
         {Object.keys(selectedType)
           .filter(key => selectedType[key])
           .map(key => (
-            <Overdrive id={"option" + key} key={key}>
+            <Overdrive id={"option" + key} key={key} duration={300}>
               <div
                 className="type-list-item"
                 name={key}

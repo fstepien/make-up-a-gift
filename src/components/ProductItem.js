@@ -9,17 +9,22 @@ const ProductItem = props => {
     <React.Fragment>
       <img
         src={props.locked ? "/assets/lock.svg" : "/assets/unlock.svg"}
-        className="productBtn"
+        className="product-btn"
         onClick={() => props.toggleLock(product.product_type, product.id)}
       />
-      {product.name && (
-        <p className="product-name">
-          {product.name.replace(/\b\w/g, l => l.toUpperCase())}
-        </p>
-      )}
+
       {product.brand && <p>{product.brand.toUpperCase()}</p>}
+      {product.name && (
+        <p className="product-name">{product.name.replace(/&trade;/g, "")}</p>
+      )}
       {product.api_featured_image && (
-        <img src={product.api_featured_image} className="displayImg" />
+        <a
+          href={product.product_link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={product.api_featured_image} className="displayImg" />
+        </a>
       )}
     </React.Fragment>
   );

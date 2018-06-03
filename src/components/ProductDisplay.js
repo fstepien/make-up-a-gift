@@ -59,63 +59,70 @@ class ProductDisplay extends Component {
   };
 
   render() {
-    const state = Object.assign({}, this.state);
+    // const state = Object.assign({}, this.state);
     const { product1, product2, product3 } = this.props;
     const { dataLoaded, products } = this.state;
 
     return (
-      <div className="type clearfix displayBox">
-        <div className="product">
-          {dataLoaded ? (
-            <ProductItem
-              product={product1}
-              toggleLock={this.toggleLock}
-              locked={products.product1.locked}
-            />
-          ) : (
-            <Icon className="loading-icon" name="lipstick" />
-          )}
+      <React.Fragment>
+        <h2 style={{ textAlign: "center" }}>
+          WHAT DO YOU THINK OF THESE? <br />YOU CAN RESHUFFLE TO GET NEW
+          PRODUCTS AND LOCK ANY PRODUCT BEFORE SHUFFLING
+        </h2>
+        <div className="type clearfix display-box">
+          <div className="product">
+            {dataLoaded ? (
+              <ProductItem
+                product={product1}
+                toggleLock={this.toggleLock}
+                locked={products.product1.locked}
+              />
+            ) : (
+              <Icon className="loading-icon" name="lipstick" />
+            )}
+          </div>
+          <div className="product">
+            {dataLoaded ? (
+              <ProductItem
+                product={product2}
+                toggleLock={this.toggleLock}
+                locked={products.product2.locked}
+              />
+            ) : (
+              <Icon className="loading-icon" name="lipstick" />
+            )}
+          </div>
+          <div className="product">
+            {dataLoaded ? (
+              <ProductItem
+                product={product3}
+                toggleLock={this.toggleLock}
+                locked={products.product3.locked}
+              />
+            ) : (
+              <Icon className="loading-icon" name="lipstick" />
+            )}
+          </div>
+          <input
+            className="email-btn"
+            type="button"
+            value="Let's See More Products"
+            onClick={() => this.props.generate(this.state.products)}
+          />
+          <Toggle>
+            {({ on, toggle }) => (
+              <Fragment>
+                <button className="email-btn" onClick={toggle}>
+                  Send Me This List
+                </button>
+                <Modal on={on} toggle={toggle}>
+                  <SendEmail products={this.state.products} toggle={toggle} />
+                </Modal>
+              </Fragment>
+            )}
+          </Toggle>
         </div>
-        <div className="product">
-          {dataLoaded ? (
-            <ProductItem
-              product={product2}
-              toggleLock={this.toggleLock}
-              locked={products.product2.locked}
-            />
-          ) : (
-            <Icon className="loading-icon" name="lipstick" />
-          )}
-        </div>
-        <div className="product">
-          {dataLoaded ? (
-            <ProductItem
-              product={product3}
-              toggleLock={this.toggleLock}
-              locked={products.product3.locked}
-            />
-          ) : (
-            <Icon className="loading-icon" name="lipstick" />
-          )}
-        </div>
-        <input
-          type="button"
-          value="Let's See More Products"
-          onClick={() => this.props.generate(this.state.products)}
-        />
-        <Toggle>
-          {({ on, toggle }) => (
-            <Fragment>
-              <button className="emailBtn" onClick={toggle}>
-                Send Me This List
-              </button>
-              <Modal on={on} toggle={toggle}>
-                <SendEmail products={this.state.products} toggle={toggle} />
-              </Modal>
-            </Fragment>
-          )}
-        </Toggle>
-      </div>
+      </React.Fragment>
     );
   }
 }

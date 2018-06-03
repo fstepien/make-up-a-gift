@@ -74,6 +74,7 @@
 .type-list-item {
   /* background: #ffecda56;
    */
+  background: white;
   font-weight: 400;
   text-align: center;
   width: 50%;
@@ -88,6 +89,7 @@
   transform: width 0.5 ease;
 }
 h2 {
+  text-align: center;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -101,6 +103,7 @@ h2 {
 }
 
 /* Slider styling */
+
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
@@ -125,40 +128,44 @@ input[type="range"]::-ms-track {
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: 1px solid #ff004f;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
+
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
   background: #ffffff;
   cursor: pointer;
-  margin-top: -14px;
-  box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.5);
+  margin-top: -8px;
+  border: black 1px solid;
 }
 
 input[type="range"]::-moz-range-thumb {
-  box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.5);
-  border: 1px solid #ff004f;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
   background: #ffffff;
   cursor: pointer;
+  margin-top: -8px;
+  border: black 1px solid;
 }
 
 input[type="range"]::-ms-thumb {
-  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
-  border: 1px solid #ff004f;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
   background: #ffffff;
   cursor: pointer;
+  margin-top: -8px;
+  border: black 1px solid;
 }
 
-.sliderContainer {
+.slider-container {
   text-align: center;
 }
-
+@media (max-width: 640px) {
+  .slider-container {
+    margin-top: 60px;
+  }
+}
 input[type="range"] {
   padding: 0;
   margin: 0 10px;
@@ -166,18 +173,16 @@ input[type="range"] {
   height: 9px;
   min-width: 200px;
   cursor: pointer;
-  border: 3px solid #ff86a0;
+
   border-radius: 2px;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 8.4px;
+  height: 4px;
   cursor: pointer;
-  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
   background: #3e4040;
   border-radius: 1.3px;
-  border: 0.5px solid #ff004f;
 }
 
 input[type="range"]:focus::-webkit-slider-runnable-track {
@@ -186,26 +191,23 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
 
 input[type="range"]::-moz-range-track {
   width: 100%;
-  height: 8.4px;
+  height: 4px;
   cursor: pointer;
-  box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
   background: #3e4040;
   border-radius: 1.3px;
-  border: 0.5px solid #ff004f;
 }
 
 input[type="range"]::-ms-track {
   width: 100%;
-  height: 8.4px;
+  height: 4px;
   cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  border-width: 16px 0;
+  background: #3e4040;
+  border-radius: 1.3px;
   color: transparent;
 }
 input[type="range"]::-ms-fill-lower {
   background: #3e4040;
-  border: 0.2px solid #ff004f;
+
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
 }
@@ -214,7 +216,7 @@ input[type="range"]:focus::-ms-fill-lower {
 }
 input[type="range"]::-ms-fill-upper {
   background: #3e4040;
-  border: 0.2px solid #ff004f;
+
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #24221f, 0px 0px 1px #24221f;
 }
@@ -253,29 +255,36 @@ section.display {
   margin-bottom: 50px;
   position: relative;
 }
-.displayBox {
+.display-box {
   padding-bottom: 145px;
 }
 .product {
   width: calc((100% - 20px) / 3);
   min-width: 280px;
-  height: 300px;
-
   height: 325px;
   margin: 0 10px 20px 0;
   float: left;
-
   border-radius: 2px;
   position: relative;
   text-align: center;
   background: white;
-
   border: 2px solid white;
-
   background: white;
-
   transform: width 0.5 ease;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  padding: 20px;
+}
+@supports (display: grid) {
+  .display-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 10px;
+  }
+  .product {
+    float: none;
+    justify-self: center;
+    margin: 0 0 20px 0;
+  }
 }
 @media (max-width: 1092px) {
   .product {
@@ -287,19 +296,19 @@ section.display {
     width: 325px;
     margin: 0 auto 10px;
     float: none;
-    margin: 60px auto;
+    margin: 80px auto 0 auto;
   }
 }
-.product:last-of-type {
+/* .product:last-of-type {
   margin-right: 0;
-}
+} */
 @media (max-width: 640px) {
   .product:last-of-type {
-    margin: 0 auto 10px;
+    margin: 80px auto 10px;
   }
 }
 
-.productBtn {
+.product-btn {
   height: 60px;
   transform: translate(-50%, -100%);
   position: absolute;
@@ -308,19 +317,19 @@ section.display {
   cursor: pointer;
 }
 
-.productBtn:hover,
-.productBtn:focus,
-.productBtn:active {
+.product-btn:hover,
+.product-btn:focus,
+.product-btn:active {
   transform: translate(-50%, -100%) scale(1.3);
 }
 
-.emailBtn {
+.email-btn {
   font-weight: 400 !important;
   width: 40%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10px;
+  bottom: 30px;
   height: 36.5px;
   text-transform: uppercase;
   border: 2px solid #696969;
@@ -332,54 +341,30 @@ section.display {
   transition: all ease 0.3s;
 }
 
-.emailBtn:hover,
-.emailBtn:active {
+.email-btn:hover,
+.email-btn:active {
   transform: translateY(2px) translateX(-50%);
 }
 
-.displayBox > input {
-  /* margin: 0 auto; */
+.display-box > input {
   display: block;
-  width: 32%;
-  position: absolute;
-  bottom: 80px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  background: #ffecda;
-  border: 1.5px solid #ff004f;
-  color: #ff004f;
-  letter-spacing: 1px;
-  padding: 5px;
-  border-radius: 2px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
-  font-weight: bold;
-}
-
-i .displayBox input:hover {
-  border: 2px solid #ff004f;
-  transform: translateX(-50%) scale(1.02);
-  box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.6);
-}
-
-.displayBox input:active {
-  transform: translateX(-50%) scale(1);
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
-}
-
-.displayBox input:active {
-  box-shadow: none;
 }
 
 @media (max-width: 1070px) {
-  .emailBtn,
-  .displayBox input {
+  .email-btn,
+  .display-box input {
     width: 90%;
   }
 }
 
 .product-name {
-  min-height: 45px;
+  height: 40px;
   font-weight: bold;
+  overflow: hidden;
+  line-height: 20px;
 }
 .displayImg {
   max-width: 175px;

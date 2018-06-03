@@ -13,7 +13,7 @@ class Slider extends React.Component {
   }
 
   render() {
-    let { max, min, range } = this.props.budget;
+    let { max, min, range, loader } = this.props.budget;
     const maxDollar = (max / 100).toLocaleString("en-US", {
       style: "currency",
       currency: "USD"
@@ -29,11 +29,12 @@ class Slider extends React.Component {
     // console.log(min, max)
 
     return (
-      <div className="sliderContainer">
+      <div className="slider-container">
+        <h2>NOW PICK YOUR BUDGET</h2>
         {range ? (
-          <p style={{ fontSize: "18px" }}>Budget: {rangeDollar} </p>
+          <p style={{ fontSize: "22px" }}>Budget: {rangeDollar} </p>
         ) : (
-          <p style={{ fontSize: "18px" }}>Set Your Budget</p>
+          <p style={{ fontSize: "22px" }}>Calculating ranges...</p>
         )}
         <span
           className="slider"
@@ -49,6 +50,7 @@ class Slider extends React.Component {
             onChange={e => {
               this.props.setBudget(e.target.value);
             }}
+            disabled={range ? "" : "disabled"}
           />
           {maxDollar}
         </span>
