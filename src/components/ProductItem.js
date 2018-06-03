@@ -1,4 +1,5 @@
 import React from "react";
+import Colors from "./Colors";
 
 const ProductItem = props => {
   // console.log(props);
@@ -9,7 +10,7 @@ const ProductItem = props => {
       <img
         src={props.locked ? "/assets/lock.svg" : "/assets/unlock.svg"}
         className="product-btn"
-        onClick={() => props.toggleLock(product.product_type, product.id)}
+        onClick={() => props.toggleLock(product.id)}
       />
 
       {product.brand && <p>{product.brand.toUpperCase()}</p>}

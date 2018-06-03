@@ -45,14 +45,12 @@ class ProductDisplay extends Component {
     }
   }
 
-  toggleLock = (type, id) => {
-    // const { products } = this.state;
+  toggleLock = id => {
     const products = { ...this.state.products };
-    // console.log(products);
     for (const product in products) {
-      // console.log(products[product]);
       if (products[product].id === id) {
         products[product].locked = !products[product].locked;
+
         this.setState({ products });
       }
     }
