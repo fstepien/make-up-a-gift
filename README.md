@@ -1,6 +1,8 @@
 Make Up A Gift
 ==============
 
+[https://makeupagift.filipstepien.com](https://makeupagift.filipstepien.com)
+
 #### Product Scope Description 
 
 **Client Brief:** Create an app that uses a makeup API to assemble a gift set that follows a certain budget. The user can enter 3 product types (Nail Polish, Eyeliner, Foundation, etc) and are suggested 3 products that’s total price is less than the budgeted amount. Users can “save” one product and remix the rest until they find a combination they like.
