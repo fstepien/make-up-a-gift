@@ -45,15 +45,12 @@ class ProductDisplay extends Component {
     }
   }
 
-  toggleLock = id => {
-    const products = { ...this.state.products };
-    for (const product in products) {
-      if (products[product].id === id) {
-        products[product].locked = !products[product].locked;
+  toggleLock = productNumber => {
+    let products = { ...this.state.products };
+    console.log(products);
+    products[productNumber].locked = !products[productNumber].locked;
 
-        this.setState({ products });
-      }
-    }
+    this.setState({ products }, this.props.generate(this.state.products));
   };
 
   render() {
@@ -72,6 +69,7 @@ class ProductDisplay extends Component {
             {dataLoaded ? (
               <ProductItem
                 product={product1}
+                productNumber="product1"
                 toggleLock={this.toggleLock}
                 locked={products.product1.locked}
               />
@@ -83,6 +81,7 @@ class ProductDisplay extends Component {
             {dataLoaded ? (
               <ProductItem
                 product={product2}
+                productNumber="product2"
                 toggleLock={this.toggleLock}
                 locked={products.product2.locked}
               />
@@ -94,6 +93,7 @@ class ProductDisplay extends Component {
             {dataLoaded ? (
               <ProductItem
                 product={product3}
+                productNumber="product3"
                 toggleLock={this.toggleLock}
                 locked={products.product3.locked}
               />

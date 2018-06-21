@@ -3,14 +3,14 @@ import Colors from "./Colors";
 
 const ProductItem = props => {
   // console.log(props);
-  const { product, productNum, toggleLock } = props;
+  const { product, productNum, toggleLock, productNumber } = props;
 
   return (
     <React.Fragment>
       <img
         src={props.locked ? "/assets/lock.svg" : "/assets/unlock.svg"}
         className="product-btn"
-        onClick={() => props.toggleLock(product.id)}
+        onClick={() => props.toggleLock(productNumber)}
       />
 
       {product.brand && <p>{product.brand.toUpperCase()}</p>}
