@@ -95,7 +95,7 @@ class App extends Component {
         rates.USD = res.data.rates.CAD / res.data.rates.USD;
         this.setState({ rates });
       })
-      .then(() => {
+      .finally(() => {
         for (let product in this.state.products) {
           this.getProductData(product);
         }
